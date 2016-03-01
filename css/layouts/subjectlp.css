@@ -25,4 +25,5 @@ body.writing {
     outline: 0;
     border-radius: 8px;
     background-color: #2CAEA6;
+    text-transform: uppercase;
 }

@@ -61,8 +61,10 @@
                     <textarea placeholder="Type here and/or attach files below..."></textarea>
                 </div>
                 <div id="attachments" class="input-group">
-                    <div class="dropzone">
-                    </div>
+                    <input type="file" style="display:none;" id="inputfile" multiple="" />
+                    <a href="javascript:document.getElementById('inputfile').click(); ">
+                        <span class="dropzone"></span>
+                    </a>
                 </div>
                 <button id="submit-opportunity-btn">Submit Request</button>
             </form>
