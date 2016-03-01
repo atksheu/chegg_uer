@@ -1,0 +1,116 @@
+body {
+    /*background: url('../../images/template.png') no-repeat center top;*/
+    background-size: 100%;
+    height: 1000px;
+}
+
+#main {
+    width: 780px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.input-group {
+    display: block;
+    margin-bottom: 32px;
+}
+
+.page-title,
+.page-subtitle {
+    text-align: center;
+}
+
+.page-title {
+    margin-top: 101px;
+}
+
+.page-subtitle {
+    margin-top: 15px;
+}
+
+h3 {
+    margin-bottom: 7px;
+}
+
+.content {
+    margin-top: 75px;
+}
+
+#opportunity-request-form {
+    box-sizing: border-box;
+    width: 620px;
+    padding-right: 80px;
+    border-right: 1px solid #e5e5e5;
+    float: left;
+}
+
+aside {
+    float: left;
+    width: 160px;
+    padding-left: 20px;
+}
+
+.clear {
+    clear: both;
+}
+
+.gradelevel-picker {
+    display: block;
+    height: 44px;
+}
+
+#question-statement textarea {
+    height: 118px;
+    width: 100%;
+}
+
+.input-instructions {
+    text-align: right;
+    font-size: 13px;
+    color: #bbb;
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+
+#additional-materials {
+    padding-top: 6px;
+}
+
+.label-description {
+    margin-top: -5px;
+    display: block;
+    margin-bottom: 13px;
+}
+
+#additional-materials textarea {
+    width: 100%;
+}
+
+#attachments {
+    width: 100%;
+    height: 196px;
+    margin-top: -15px;
+    margin-bottom: 18px;
+}
+
+#submit-opportunity-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-size: 21px;
+    font-weight: 700;
+    font-family: 'museo-sans-rounded', san-serif;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    background-color: #2CAEA6;
+    border: 0;
+    outline: 0;
+}

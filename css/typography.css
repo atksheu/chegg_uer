@@ -1,0 +1,33 @@
+h1, h2 {
+	font-family: 'museo-sans-rounded', san-serif;
+	font-weight: 100;
+}
+
+p {
+	font-size: 13px;
+	line-height: 21px;
+	color: #666;
+}
+
+label {
+	font-family: 'Helvetica Neue', Helvetica Neue, Helvetica, Arial, sans-serif;
+	color: #333;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+h3 {
+	font-family: 'Helvetica Neue', Helvetica Neue, Helvetica, Arial, sans-serif;
+	color: #333;
+	font-size: 13px;
+}
+
+.page-title {
+	font-size: 36px;
+	color: #333;
+}
+
+.page-subtitle {
+	font-size: 24px;
+	color: #F27D00;
+}
