@@ -27,3 +27,19 @@ body.writing {
     background-color: #2CAEA6;
     text-transform: uppercase;
 }
+
+#find-me-a-tutor-btn {
+    display: block;
+    width: 100%;
+    font-size: 21px;
+    font-weight: 700;
+    font-family: 'museo-sans-rounded', san-serif;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    border-radius: 8px;
+    background-color: #2CAEA6;
+    text-transform: uppercase;
+}
