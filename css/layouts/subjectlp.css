@@ -1,5 +1,28 @@
 body {
-    background: url('../../images/algebra-subjectlp-bg.png') no-repeat center top;
-    background-size: 100%;
+    background: url('../../images/algebra-subjectlp-bg.png') no-repeat center top #212121;
+    background-size: 1265px;;
     height: 1000px;
+}
+
+body.algebra {
+    background: url('../../images/algebra-subjectlp-bg.png') no-repeat center top;
+}
+
+body.writing {
+    background: url('../../images/writing-subjectlp-bg.png') no-repeat center top;
+}
+
+#submit-opportunity-btn {
+    display: block;
+    width: 100%;
+    font-size: 21px;
+    font-weight: 700;
+    font-family: 'museo-sans-rounded', san-serif;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    border-radius: 8px;
+    background-color: #2CAEA6;
 }

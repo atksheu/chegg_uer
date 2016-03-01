@@ -1,6 +1,4 @@
 body {
-    /*background: url('../../images/template.png') no-repeat center top;*/
-    background-size: 100%;
     height: 1000px;
 }
 
@@ -9,11 +7,6 @@ nav {
     background-size: 1266px;
     height: 54px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.18);
-}
-
-#main {
-    width: 780px;
-    margin: 0 auto;
 }
 
 label {
@@ -111,16 +104,14 @@ aside {
 #submit-opportunity-btn {
     display: block;
     width: 100%;
-    text-align: center;
-    border-radius: 8px;
-    text-transform: uppercase;
     font-size: 21px;
     font-weight: 700;
     font-family: 'museo-sans-rounded', san-serif;
     height: 60px;
     line-height: 60px;
     color: #fff;
-    background-color: #2CAEA6;
     border: 0;
     outline: 0;
+    border-radius: 8px;
+    background-color: #2CAEA6;
 }
