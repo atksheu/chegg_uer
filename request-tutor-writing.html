@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Help us find a great Writing tutor</title>
+
+    <!-- Bootstrap -->
+    <script src="https://use.typekit.net/txi2ato.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/shared.css" rel="stylesheet">
+    <link href="css/typography.css" rel="stylesheet">
+    <link href="css/layouts/request-form.css" rel="stylesheet">
+    <link href="css/bootstrap-mods.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <nav></nav>
+    <div id="main">
+        <h1 class="page-title">Help us find you a great Writing tutor</h1>
+        <h2 class="page-subtitle">Be detailed to get the best match, faster.</h2>
+
+        <section class="content">
+            <form id="opportunity-request-form">
+                <div class="input-group">
+                    <label>Your grade level</label>
+                    <div class="gradelevel-picker btn-group btn-group-justified btn-group-lg" data-toggle="buttons">
+                        <label class="btn btn-primary">
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked> Pre-HS
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="options" id="option2" autocomplete="off"> High School
+                        </label>
+                        <label class="btn btn-primary active">
+                            <input type="radio" name="options" id="option3" autocomplete="off"> College
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="options" id="option3" autocomplete="off"> Other
+                        </label>
+                    </div>
+                </div>
+                <div id="question-statement" class="input-group">
+                    <label>What do you want help with?</label>
+                    <small class="input-instructions">Minimum: 40 characters</small>
+                    <textarea></textarea>
+                </div>
+                <div id="additional-materials" class="input-group">
+                    <label>Include any materials you'd like the tutor to have (optional)</label>
+                    <span class="label-description">E.g. an assignment, any work you’ve already completed, lecture notes</span>
+                    <textarea placeholder="Type here and/or attach files below..."></textarea>
+                </div>
+                <div id="attachments" class="input-group">
+                    <input type="file" style="display:none;" id="inputfile" multiple="" />
+                    <a href="javascript:document.getElementById('inputfile').click(); ">
+                        <span class="dropzone"></span>
+                    </a>
+                </div>
+                <button id="submit-opportunity-btn">Submit Request</button>
+            </form>
+            <aside>
+                <h3>What happens next?</h3>
+                <p>
+                    We match you with an Writing tutor. This usually takes under 5 minutes. 
+                    You’ll have a chance to introduce yourselves and verify you want to work 
+                    together before starting a lesson
+                </p>
+            </aside>
+            <div class="clear"></div>
+        </section>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

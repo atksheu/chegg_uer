@@ -1,45 +1,45 @@
 body {
-    background: url('../../images/algebra-subjectlp-bg.png') no-repeat center top #212121;
-    background-size: 1265px;;
     height: 1000px;
 }
 
 body.algebra {
-    background: url('../../images/algebra-subjectlp-bg.png') no-repeat center top;
+    background: url('../../images/algebra-subjectlp-bg.png') no-repeat center top #212121;
+    background-size: 1265px;
 }
 
 body.writing {
-    background: url('../../images/writing-subjectlp-bg.png') no-repeat center top;
-}
-
-#submit-opportunity-btn {
-    display: block;
-    width: 100%;
-    font-size: 21px;
-    font-weight: 700;
-    font-family: 'museo-sans-rounded', san-serif;
-    height: 60px;
-    line-height: 60px;
-    color: #fff;
-    border: 0;
-    outline: 0;
-    border-radius: 8px;
-    background-color: #2CAEA6;
-    text-transform: uppercase;
+    background: url('../../images/writing-subjectlp-bg.png') no-repeat center top #212121;
+    background-size: 1265px;
 }
 
 #find-me-a-tutor-btn {
+    text-decoration: none;
+    position: absolute;
+    top: 389px;
+    left: 479px;
+    text-align: center;
     display: block;
-    width: 100%;
+    width: 380px;
     font-size: 21px;
-    font-weight: 700;
+    font-weight: 500;
     font-family: 'museo-sans-rounded', san-serif;
-    height: 60px;
-    line-height: 60px;
+    height: 76px;
+    line-height: 76px;
     color: #fff;
     border: 0;
     outline: 0;
     border-radius: 8px;
     background-color: #2CAEA6;
     text-transform: uppercase;
+}
+
+
+#submit-opportunity-btn:hover,
+#find-me-a-tutor-btn:hover {
+    background-color: #45B7B0;
+}
+
+#submit-opportunity-btn:active,
+#find-me-a-tutor-btn:active {
+    background-color: #269891;
 }
