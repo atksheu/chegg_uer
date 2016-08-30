@@ -1,0 +1,108 @@
+.opp-detail #content {
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.opp-content {
+    float: left;
+    width: 74%;
+}
+
+.opp-content article {
+    padding-left: 84px;
+}
+
+.opp-content header {
+    padding: 30px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 48px;
+}
+
+.opp-actions {
+    float: left;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 26%;
+    padding: 27px 24px;
+    background: #f9f9f9;
+}
+
+.opp-close {
+    display: block;
+    float: left;
+    width: 84px;
+    height: 40px;
+}
+
+.opp-title {
+    float: left;
+    line-height: 40px;
+}
+
+.opp-content-subject {
+    font-weight: 700;
+}
+
+.opp-content-lesson-type {
+    font-weight: 700;
+    color: #f27d00;
+    text-transform: uppercase;
+}
+
+.early-access-explanation {
+    font-size: 12px;
+    line-height: 20px;
+    color: #666;
+    min-height: 400px;
+}
+
+.opp-claim-btn {
+    background: #2CAEA6;
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 6px;
+    line-height: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 14px 0;
+}
+
+.opp-claim-btn:hover {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.opp-claim-btn:active, 
+.opp-claim-btn:visited {
+    text-decoration: none;
+    color: #fff;
+}
+
+.early-access-timer-box {
+    margin-top: 20px;
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid #f27d00;
+    text-align: center;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.early-access-timer-countdown {
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    color: #f27d00;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.yellowish {
+    background: #FFF2C6;
+}
