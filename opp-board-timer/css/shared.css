@@ -12,6 +12,10 @@ a {
     color: #333;
 }
 
+a:hover {
+    color: #333;
+}
+
 #site-nav-signedintutor {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -22,10 +26,16 @@ a {
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
 }
 
+#site-logo {
+    display: block;
+    float: left;
+    margin-left: 16px;
+    margin-top: 18px;
+}
+
 #site-logo img {
     width: 147px;
     height: 23px;
-    float: left;
 }
 
 .nav-right-block {

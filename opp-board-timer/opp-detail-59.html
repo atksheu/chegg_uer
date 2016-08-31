@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Tutoring Opportunities</title>
+    <title>Charlie requested help ASAP - Calculus</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,13 +37,14 @@
 
                 counter++;
                 // Display 'counter' wherever you want to display it.
-                if (counter >= (17 - 10) && counter <= (17 -2)) {
+                if (counter >= (59 - 10) && counter <= (59 -2)) {
                     pulse(thisOpp);
                 }
 
                 if (counter == 59) {
                     // Display a login box
                     clearInterval(interval);
+                    showFulfilled()
                 }
             }, 1000);
 
@@ -54,13 +55,20 @@
                     $(opp_id).addClass('yellowish');
                 }
             }
+
+            function showFulfilled() {
+                $('#opp-early-access-timer').fadeOut();
+                $('.early-access-explanation').fadeOut();
+                $('.opp-claim-btn').hide();
+                $('.opp-status-fulfilled').show();
+            }
         });
     </script>
 
 </head>
 <body class="opp-detail">
 <nav id="site-nav-signedintutor" class="clearfix">
-    <a id="site-logo" href="/">
+    <a id="site-logo" href="index.html">
         <img src="img/CheggTutors-logo.png" title="Chegg Tutors" alt="Chegg Tutors" />
     </a>
     <div class="nav-right-block"></div>
@@ -89,6 +97,7 @@
                     <span class="opp-content-lesson-type">Live</span>
                 </div>
                 <p class="opp-request-fulltext">
+                    Hi, could you help me with my calculus homework? 
                     Here are the questions that I am working on.<br /><br />
 
                     I am supposed to find the tangent slope of the line. <br />
@@ -99,6 +108,7 @@
             </article>
         </section>
         <aside class="opp-actions">
+            <span class="opp-status-fulfilled">Request was fulfilled.</span>
             <a class="opp-claim-btn">I can help</a>
             <div id="opp-early-access-timer" class="early-access-timer-box">
                 Early Access ends in:

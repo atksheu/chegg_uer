@@ -17,24 +17,32 @@
     color: #333;
 }
 
+.help-icon {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    background: url('../img/HelpIcon.png') no-repeat 0 0;
+    background-size: cover;
+    margin-left: 8px;
+}
+
 .opp-row {
     position: relative;
     height: 108px;
     background: #fff;
     border: 1px solid #ddd;
-    border-bottom: none;
-    -webkit-transition: all 1s ease-in-out;
-    -moz-transition: all 1s ease-in-out;
-    -o-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+    -webkit-transition: background-color 1s ease-in-out;
+    -moz-transition: background-color 1s ease-in-out;
+    -o-transition: background-color 1s ease-in-out;
+    transition: background-color 1s ease-in-out;
 }
 
 .yellowish {
     background: #FFF2C6;
 }
 
-.opp-row:last-child {
-    border-bottom: 1px solid #ddd;
+.opp-row:hover {
+    border-color: #999;
 }
 
 .early-access-timer {
@@ -65,6 +73,10 @@
     width: 25%;
     padding-left: 48px;
     margin-top: 42px;
+}
+
+.opp-name.empty {
+    color: #999;
 }
 
 .opp-details {
