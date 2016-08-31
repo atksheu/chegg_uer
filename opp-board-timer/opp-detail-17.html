@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Douglas requested help ASAP - Computer Science</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/shared.css" rel="stylesheet">
+    <link href="css/opp-detail.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        $(function() {
+            var counter = 0;
+            var interval = setInterval(function() {
+                var thisOpp = $('#opp-early-access-timer');
+                var timer = $('#opp-early-access-timer .countdown');
+                var currentCountdown = timer.text();
+                console.log(currentCountdown);
+                currentCountdown = currentCountdown - 1;
+                timer.text(currentCountdown);
+
+                counter++;
+                // Display 'counter' wherever you want to display it.
+                if (counter >= (17 - 10) && counter <= (17 -2)) {
+                    pulse(thisOpp);
+                }
+
+                if (counter == 17) {
+                    // Display a login box
+                    clearInterval(interval);
+                    showOppOpened()
+                }
+            }, 1000);
+
+            function pulse(opp_id) {
+                if($(opp_id).hasClass('yellowish')) {
+                    $(opp_id).removeClass('yellowish');
+                } else {
+                    $(opp_id).addClass('yellowish');
+                }
+            }
+
+            function showOppOpened() {
+                $('#opp-early-access-timer').fadeOut();
+                $('.early-access-explanation').fadeOut();
+                $('.opp-status-opened').show();
+            }
+        });
+    </script>
+
+</head>
+<body class="opp-detail">
+<nav id="site-nav-signedintutor" class="clearfix">
+    <a id="site-logo" href="index.html">
+        <img src="img/CheggTutors-logo.png" title="Chegg Tutors" alt="Chegg Tutors" />
+    </a>
+    <div class="nav-right-block"></div>
+</nav>
+<div id="main" class="clearfix">
+    <nav id="tutor-nav">
+        <span>Dashboard</span>
+        <span>My Students</span>
+        <span class="active">Opportunities</span>
+        <span>Sent</span>
+        <span>Past Lessons</span>
+    </nav>
+    <div id="content" class="clearfix">
+        <section class="opp-content">
+            <header class="clearfix">
+                <a class="opp-close close-icon" href="index.html"></a>
+                <h2 class="opp-title">
+                    <i class="online-indicator online"></i>
+                    <span class="student-name">Douglas</span>
+                    requested help ASAP
+                </h2>
+            </header>
+            <article>
+                <div class="opp-content-key-meta">
+                    <span class="opp-content-subject">Computer Science</span>
+                    <span class="opp-content-lesson-type"></span>
+                </div>
+                <p class="opp-request-fulltext">
+                    hi need help. A bag contains 6 yellow balls and 5 green balls. 
+                    4 balls are chosen at random from the bag. Find the probability that<br /><br />
+                    (i) No yellow ball is chosen.<br />
+                    (ii) At least one yellow ball is chosen.
+
+                </p>
+            </article>
+        </section>
+        <aside class="opp-actions">
+            <a class="opp-claim-btn">I can help</a>
+            <div class="opp-status-opened">Open to all tutors</div>
+            <div id="opp-early-access-timer" class="early-access-timer-box">
+                Early Access ends in:
+                <span class="early-access-timer-countdown">:<span class="countdown">17</span></span>
+            </div>
+            <p class="early-access-explanation">
+                <strong>
+                    During Early Access, there’s no advantage to clicking fast :) 
+                </strong>
+                It doesn’t matter whether you click at 43 seconds or 3. If you 
+                say you can help, we show the student your profile, along with 
+                the other tutors who say they can help&mdash;<strong>all at 
+                the end of the timer to ensure equal opportunity.</strong><br /><br />
+
+                After you click “I can help,” you will have additional time to 
+                personalize your first message to the student.
+            </p>
+        </aside>
+    </div>
+</div>
+</body>
+</html>
