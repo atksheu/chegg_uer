@@ -1,0 +1,87 @@
+body {
+    background: #f5f5f5;
+    margin: 0;
+    font-family: Aspira;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a {
+    color: #333;
+}
+
+a:hover {
+    color: #333;
+}
+
+#site-nav-signedintutor {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    height: 56px;
+    background: #fff;
+    border-bottom: 2px solid #f27d00;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+}
+
+#site-logo {
+    display: block;
+    float: left;
+    margin-left: 16px;
+    margin-top: 18px;
+}
+
+#site-logo img {
+    width: 147px;
+    height: 23px;
+}
+
+.nav-right-block {
+    background: url('../img/Nav-RightBlock.png') no-repeat 0 0;
+    background-size: cover;
+    width: 175px;
+    height: 49px;
+    float: right;
+}
+
+#main {
+    margin: 12px auto 0;
+    width: 1024px;
+}
+
+#tutor-nav {
+    margin-top: 72px;
+    float: left;
+    width: 16%;
+}
+
+#tutor-nav span {
+    display: block;
+    font-weight: 700;
+    color: #bbb;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 15px 0;
+    text-transform: uppercase;
+}
+
+#tutor-nav span.active {
+    color: #333;
+}
+
+#content {
+    float: left;
+    width: 84%;
+}
+
+#page-header {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #2E99A8;
+    padding-left: 40px;
+    height: 128px;
+    color: #fff;
+    padding-top: 36px;
+}

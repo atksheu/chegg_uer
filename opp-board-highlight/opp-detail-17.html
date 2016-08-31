@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Charlie requested help ASAP - Calculus</title>
+    <title>Douglas requested help ASAP - Computer Science</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,14 +37,14 @@
 
                 counter++;
                 // Display 'counter' wherever you want to display it.
-                if (counter >= (59 - 10) && counter <= (59 -2)) {
+                if (counter >= (17 - 10) && counter <= (17 -2)) {
                     pulse(thisOpp);
                 }
 
-                if (counter == 59) {
+                if (counter == 17) {
                     // Display a login box
                     clearInterval(interval);
-                    showFulfilled()
+                    showOppOpened()
                 }
             }, 1000);
 
@@ -56,11 +56,10 @@
                 }
             }
 
-            function showFulfilled() {
+            function showOppOpened() {
                 $('#opp-early-access-timer').fadeOut();
                 $('.early-access-explanation').fadeOut();
-                $('.opp-claim-btn').hide();
-                $('.opp-status-fulfilled').show();
+                $('.opp-status-opened').show();
             }
         });
     </script>
@@ -87,41 +86,39 @@
                 <a class="opp-close close-icon" href="index.html"></a>
                 <h2 class="opp-title">
                     <i class="online-indicator online"></i>
-                    <span class="student-name">Charlie</span>
+                    <span class="student-name">Douglas</span>
                     requested help ASAP
                 </h2>
             </header>
             <article>
                 <div class="opp-content-key-meta">
-                    <span class="opp-content-subject">Calculus</span>
-                    <span class="opp-content-lesson-type">Live</span>
+                    <span class="opp-content-subject">Computer Science</span>
+                    <span class="opp-content-lesson-type"></span>
                 </div>
                 <p class="opp-request-fulltext">
-                    Hi, could you help me with my calculus homework? 
-                    Here are the questions that I am working on.<br /><br />
+                    hi need help. A bag contains 6 yellow balls and 5 green balls. 
+                    4 balls are chosen at random from the bag. Find the probability that<br /><br />
+                    (i) No yellow ball is chosen.<br />
+                    (ii) At least one yellow ball is chosen.
 
-                    I am supposed to find the tangent slope of the line. <br />
-                    1. f(x)=2x^2 + 3x +1<br />
-                    2. f(x)=4x^3 - 7<br />
-                    3. f(x) = x^3-x^2+x-4
                 </p>
             </article>
         </section>
         <aside class="opp-actions">
-            <span class="opp-status-fulfilled">Opportunity expired.</span>
             <a class="opp-claim-btn">I can help</a>
+            <div class="opp-status-opened">Open to all tutors</div>
             <div id="opp-early-access-timer" class="early-access-timer-box">
-                Early Access ends in:
-                <span class="early-access-timer-countdown">:<span class="countdown">59</span></span>
+                You have Early Access!
+                <span class="early-access-timer-countdown">:<span class="countdown">17</span></span>
             </div>
             <p class="early-access-explanation">
                 <strong>
                     During Early Access, there’s no advantage to clicking fast :) 
                 </strong>
-                It doesn’t matter whether you click at 43 seconds or 3. If you 
+                It doesn’t matter when you click during Early Access. If you 
                 say you can help, we show the student your profile, along with 
                 the other tutors who say they can help&mdash;<strong>all at 
-                the end of the timer to ensure equal opportunity.</strong><br /><br />
+                the same time to ensure equal opportunity.</strong><br /><br />
 
                 After you click “I can help,” you will have additional time to 
                 personalize your first message to the student.

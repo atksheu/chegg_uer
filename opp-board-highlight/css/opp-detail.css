@@ -110,6 +110,8 @@
     border: 1px solid #f27d00;
     text-align: center;
     padding: 8px 0;
+    color: #f27d00;
+    font-weight: 700;
     -webkit-transition: all 1s ease-in-out;
     -moz-transition: all 1s ease-in-out;
     -o-transition: all 1s ease-in-out;
@@ -124,6 +126,7 @@
     font-size: 24px;
     line-height: 24px;
     text-decoration: none;
+    display: none;
 }
 
 .yellowish {
