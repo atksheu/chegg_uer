@@ -126,6 +126,15 @@
     text-decoration: none;
 }
 
+.attachment {
+    color: #2CAEA6;
+}
+
+.attachment:hover {
+    color: #2CAEA6;
+    text-decoration: underline;
+}
+
 .yellowish {
     background: #FFF2C6;
 }
