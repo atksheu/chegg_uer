@@ -128,6 +128,8 @@ function parsePreviousStep(current) {
         branchStep--;
     } else if (branch == 'paper' && branchStep > 1) {
         branchStep--;
+    } else if (branch == 'generic' && branchStep > 1) {
+        branchStep--;
     } else if (branch == 'none' && branchStep == lastStepID) { // If current step is the last step
         console.log('in previous from last step')
         var selectedHelpType = $(".help-type-option.active").find("input[type=radio]").val();
