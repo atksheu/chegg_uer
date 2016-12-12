@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Find me a tutor</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/charCount.js"></script>
+    <script src="js/autosize.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBWZH8cxjBhLRymG_0QbDXAd7f7uRkIDKc",
+        authDomain: "student-request-for-tutoring.firebaseapp.com",
+        databaseURL: "https://student-request-for-tutoring.firebaseio.com",
+        storageBucket: "student-request-for-tutoring.appspot.com",
+        messagingSenderId: "491893945335"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <!--<script src="js/dropzone.js"></script>-->
+    <script src="shared.js"></script>
+    <script src="versionC.js"></script>
+
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <script src="less.min.js" type="text/javascript"></script>
+</head>
+<body class="versionC">
+    <nav id="site-header">
+        <a id="logo" title="Chegg Tutors" href="/"></a>
+    </nav>
+    <div id="progress-bar">
+        <div id="current-step-bar" class="step-one"></div>
+    </div>
+    <div id="signpost">
+        <div id="signpost-text" class="invis">
+            Step <span class="current-step-count">1</span> of <span class="total-steps">2</span>
+        </div>
+    </div>
+    <form id="student-help-request-form">
+      <div id="steps-container" class="clearfix">
+        <div id="choose-help-type" 
+            data-branch="none"
+            data-branch-step="0"
+            class="request-form-step active inframe">
+            <h2>
+                <strong>I'd like help with... </strong>
+            </h2>
+            <div class="help-type-picker required">
+                <div class="help-type-option active">
+                    <label>Assignment or Problem set</label>
+                    <input name="request-type" type="radio" value="assignment" class="hidden" checked />
+                </div>
+                <div class="help-type-option">
+                    <label>Test or Quiz</label>
+                    <input name="request-type" type="radio" value="exam" class="hidden" />
+                </div>
+                <div class="help-type-option">
+                    <label>Paper or Essay</label>
+                    <input name="request-type" type="radio" value="paper" class="hidden" />
+                </div>
+                <div class="help-type-option">
+                    <label>Other</label>
+                    <input name="request-type" type="radio" value="generic" class="hidden" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin form steps for Assignment branch -->
+        <div data-branch="assignment" data-branch-step="1" class="request-form-step invis">
+            <h2>
+                Let's get more detail about your assignment—<br />
+                What <strong>sub-topic</strong>(s) within Calculus does this cover?
+            </h2>
+            <div class="input-group cozy">
+                <input name="hw-subtopic" type="text" class="required" placeholder="e.g. derivatives, integrals..." />
+                <!--<div class="suggestion">e.g. derivatives, integrals</div><br />-->
+                <div class="input-tip">
+                    If you're having trouble with this, good places to look include:
+                    <ul>
+                        <li>Chapter title in your textbook</li>
+                        <li>Topic of the lecture</li>
+                        <li>Your syllabus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div data-branch="assignment" data-branch-step="2" class="request-form-step invis">
+            <h2>
+                In <strong>one or two sentences</strong>, tell us what <br />
+                you’re having trouble with
+            </h2>
+            <div class="input-group comfortable">
+                <textarea name="hw-description" 
+                    maxlength="500" class="charlimited required"></textarea>
+                <p class="input-tip">
+                    Tip: You’ll be able to provide the assignment on the next step. 
+                    Here, try to provide a clear, concise description that lets tutors 
+                    know specifically what you need help with.
+                </p>
+                <ul class="good-bad-examples">
+                    <li class="good">
+                        "I'm struggling with the second question of my assignment, which is about..."
+                    </li>
+                    <li class="bad">
+                        "I need help with a Calculus assignment"
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-branch="assignment" data-branch-step="3" class="request-form-step invis">
+            <h2>
+                Include the <strong>assignment</strong> and <br />
+                any relevant materials (optional)
+            </h2>
+            <div class="input-group comfortable">
+                <textarea name="hw-materials-text"
+                    placeholder="Paste text here and/or attach files below..."></textarea>
+                <div class="dropzone"></div>
+                <p class="input-tip">
+                    Tip: If you've completed any work already, it's good to provide here.
+                </p>
+                <input name="hw-materials-attachments" val="" type="hidden" />
+            </div>
+        </div>
+        <!-- End Assignment branch -->
+
+        <!-- Begin form steps for Exam branch -->
+        <div data-branch="exam" data-branch-step="1" class="request-form-step invis">
+            <h2>
+                In <strong>a few sentences</strong>, tell us what your test or quiz<br />
+                is about and what you'd like from a tutor.
+            </h2>
+            <div class="input-group comfortable">
+                <textarea name="exam-description" 
+                    maxlength="500" class="charlimited required"></textarea>
+                <p class="input-tip">
+                    You'll be able to attach files on the next step.
+                </p>
+                <!--<ul class="good-bad-examples">
+                    <li class="good">
+                        "I'm struggling with the second question of my assignment, which is about..."
+                    </li>
+                    <li class="bad">
+                        "I need help with a Calculus assignment"
+                    </li>
+                </ul>-->
+            </div>
+        </div>
+
+        <div data-branch="exam" data-branch-step="2" class="request-form-step invis">
+            <h2>
+                Include <strong>any relevant materials</strong> (optional)
+            </h2>
+            <div class="input-group comfortable">
+                <!-- <textarea name="exam-materials-text" 
+                    placeholder="Paste text here and/or attach files below..."></textarea> -->
+                <div class="dropzone"></div>
+                <p class="input-tip">
+                    e.g. study guide
+                </p>
+                <input name="exam-materials-attachments" val="" type="hidden" />
+            </div>
+        </div>
+        <!-- End Exam branch -->
+
+        <!-- Begin form steps for Paper/Essay branch -->
+        <div data-branch="paper" data-branch-step="1" class="request-form-step invis">
+            <h2>
+                Where are you with this paper/essay (check all that apply)?
+            </h2>
+            <div class="essay-help-picker required">
+                <div class="essay-help-option">
+                    <label>Outlining</label>
+                    <input name="essay-help-type" type="checkbox" value="outlining" class="hidden" />
+                </div>
+                <div class="essay-help-option">
+                    <label>Edits</label>
+                    <input name="essay-help-type" type="checkbox" value="essay-edits" class="hidden" />
+                </div>
+                <div class="essay-help-option">
+                    <label>Grammar</label>
+                    <input name="essay-help-type" type="checkbox" value="grammar" class="hidden" />
+                </div>
+                <div class="essay-help-option">
+                    <label>Other</label>
+                    <input name="essay-help-type" type="checkbox" value="other" class="hidden" />
+                </div>
+            </div>
+        </div>
+
+        <div data-branch="paper" data-branch-step="2" id="paper-step3" class="request-form-step invis">
+            <h2>
+                In <strong>one or two sentences</strong>, tell us how <br />
+                a tutor can help with your paper or essay.
+            </h2>
+            <div class="input-group comfortable">
+                <textarea name="paper-description" 
+                    maxlength="500" class="charlimited required"></textarea>
+                <p class="input-tip">
+                    Tip: You’ll provide the paper/essay on the next step. 
+                    Here, try to provide a clear, concise description that lets tutors
+                    know specifically what you need help with.
+                </p>
+                <ul class="good-bad-examples">
+                    <li class="good">
+                        "I'm having trouble getting started with this paper about "Harry Potter and
+                        its impact on children's literature". It should be about 1000-word essay.
+                        Can I get help with outlining and coming up with a thesis statement?"
+                    </li>
+                    <li class="bad">
+                        "I need help with an essay/paper."
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-branch="paper" data-branch-step="3" id="paper-step4" class="request-form-step invis">
+            <h2>
+                Include the <strong>paper/essay</strong> and <br />
+                any relevant materials (optional)
+            </h2>
+            <div class="input-group comfortable">
+                <textarea name="paper-materials-text" 
+                    placeholder="Paste text here and/or attach files below..."></textarea>
+                <div class="dropzone"></div>
+                <p class="input-tip">
+                    e.g. pre-writing, outline, research completed so far
+                </p>
+                <input name="paper-materials-attachments" val="" type="hidden" />
+            </div>
+        </div>
+        <!-- End paper/essay branch -->
+
+        <!-- Begin form steps for Generic branch -->
+        <div data-branch="generic" data-branch-step="1" class="request-form-step invis">
+            <h2>
+                In <strong>a few sentences</strong>, please describe what<br />
+                you're looking for help with.
+            </h2>
+            <div class="input-group comfortable">
+                <textarea name="generic-description"
+                    maxlength="500" class="charlimited required"></textarea>
+                <p class="input-tip">
+                    Tip: You’ll provide the actual assignment on the next step. Here, 
+                    try to provide a clear, concise description that lets the tutor 
+                    know exactly what you need help with.
+                </p>
+                <ul class="good-bad-examples">
+                    <li class="good">
+                        "I'm struggling with the second question of my assignment, which is about..."
+                    </li>
+                    <li class="bad">
+                        "I need help with a Calculus assignment"
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-branch="generic" data-branch-step="2" class="request-form-step invis">
+            <h2>
+                Include <strong>any relevant materials</strong> (optional)
+            </h2>
+            <div class="input-group comfortable">
+                <textarea name="generic-materials-text" 
+                    placeholder="Paste text here and/or attach files below..."></textarea>
+                <div class="dropzone"></div>
+                <input name="generic-materials-attachments" val="" type="hidden" />
+            </div>
+        </div>
+        <!-- End Generic branch -->
+
+        <div id="choose-lesson-type" 
+            data-branch="none"
+            data-branch-step="6"
+            class="choose-lesson-type request-form-step invis">
+            <h2>
+                What <strong>type of lesson</strong> would you prefer?
+            </h2>
+            <div class="select-live-vs-written required">
+                <div id="live-option" class="lesson-type-option active">
+                    <h3>Live</h3>
+                    <p>
+                        Work with your tutor in real-time in a 
+                        virtual classroom. Use a shared whiteboard, live chat, and more!
+                    </p>
+                    <a class="more-info" href="#">More info</a>
+                    <div class="live-lesson-illo illo"></div>
+                    <span class="great-for">Great for:</span>
+                    <span class="suggested-uses">Pretty much everything</span>
+                    <input name="lesson-type-preference" type="checkbox" value="live" class="invis" checked />
+                </div>
+
+                <div id="written-option" class="lesson-type-option">
+                    <h3>Written</h3>
+                    <p>
+                        Your tutor will work offline and return detailed 
+                        comments or an explanation at a specified time.
+                    </p>
+                    <a class="more-info" href="#">More info</a>
+                    <div class="written-lesson-illo illo"></div>
+                    <span class="great-for">Great for:</span>
+                    <span class="suggested-uses">Essay edits, code review</span>
+                    <input name="lesson-type-preference" type="checkbox" value="written" class="invis" />
+                </div>
+            </div>
+        </div>
+
+        <footer id="form-actions">
+            <a href="#" id="previous-step" 
+                class="secondary-action-link"
+                title="Back to previous step">Back</a>
+            <button href="#" id="next-step" class="button-large button-primary">Next</button>
+            <div id="submit-action" class="invis clearfix">
+                <button href="#" id="submit-request" class="button-large button-primary">Finish</button>
+                <p class="feed-forward">
+                    <strong>What happens next?</strong><br />
+                    We'll match you to up to 3 tutors
+                </p>
+            </div>
+        </footer>
+      </div><!-- End #steps-container -->
+    </form>
+</body>
+<script>
+    new EmailAuthProvider();
+</script>
+</html>

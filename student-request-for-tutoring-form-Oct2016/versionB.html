@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Find me a tutor</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/page-B.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBWZH8cxjBhLRymG_0QbDXAd7f7uRkIDKc",
+            authDomain: "student-request-for-tutoring.firebaseapp.com",
+            databaseURL: "https://student-request-for-tutoring.firebaseio.com",
+            storageBucket: "student-request-for-tutoring.appspot.com",
+            messagingSenderId: "491893945335"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="styles.less" />
+    <link rel="stylesheet" type="text/css" href="versionB.less" />
+    <script src="less.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <nav>
+    </nav>
+    <form>
+        <section id="request-step1" class="request-form-step">
+            <header class="request-form-header">
+                <span class="sr-signpost">Step 1 of 2</span>
+                <h1>Help us find you a great <a href="#">Calculus</a> tutor</h1>
+            </header>
+
+            <div class="input-group">
+                <label>
+                    Are you looking for help with an assignment or essay?
+                </label>
+                <div class="button-group">
+                    <label class="button-option">
+                        No, not specifically
+                        <input name="request-type" type="checkbox" value="generic" class="hidden" />
+                    </label>
+                    <label class="button-option">
+                        Yes, an assignment
+                        <input name="request-type" type="checkbox" value="hw" class="hidden" />
+                    </label>
+                    <label class="button-option">
+                        Yes, a paper/essay
+                        <input name="request-type" type="checkbox" value="paper" class="hidden" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="request-details-section">
+                <div id="generic-request-fields" class="request-details">
+                    <div class="input-group">
+                        <label>
+                            In <strong>a few sentences</strong>, tell us what you’re having trouble with
+                        </label>
+                        <textarea name="generic-description" type="text" class=""></textarea>
+                        <small class="characters-remaining">
+                            Character limit (<span class="chars-remaining-count">500</soan> remaining)
+                        </small>
+                        <a href="#" title="See examples">See examples</a>
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            Include <strong>any relevant materials</strong>
+                        </label>
+                        <textarea name="generic-materials-text" 
+                            type="text" 
+                            class="" 
+                            placeholder="Paste text here and/or attach files below...">
+                        </textarea>
+                        <button class="attach-files">Attach file(s)...</button>
+                        <ul class="attached-files-list empty">
+                            <li>No files attached</li>
+                        </ul>
+                        <input name="generic-materials-attachments" val="" type="hidden" />
+                    </div>
+                </div>
+
+                <div id="homework-request-fields" class="request-details">
+                    <div class="input-group">
+                        <label>
+                            What <strong>sub-topic</strong>(s) within Calculus does this assignment cover?
+                        </label>
+                        <input name="hw-subtopic" type="text" class="" />
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            In <strong>one or two sentences</strong>, tell us what you’re having trouble with
+                        </label>
+                        <textarea name="hw-description" 
+                            type="text" 
+                            class=""
+                            placeholder="Paste text here and/or attach files below..."></textarea>
+                        <small class="characters-remaining">
+                            Character limit (<span class="chars-remaining-count">500</soan> remaining)
+                        </small>
+                        <a href="#" title="See examples">See examples</a>
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            Include the <strong>assignment and any relevant materials</strong>
+                        </label>
+                        <textarea name="hw-materials-text"
+                            type="text" 
+                            class="" 
+                            placeholder="Paste text here and/or attach files below...">
+                        </textarea>
+                        <button class="attach-files">Attach file(s)...</button>
+                        <ul class="attached-files-list empty">
+                            <li>No files attached</li>
+                        </ul>
+                        <input name="hw-materials-attachments" val="" type="hidden" />
+                    </div>
+                </div>
+
+                <div id="paper-request-fields" class="request-details">
+                    <div class="input-group">
+                        <label>
+                            Where are you with this paper/essay (check all that apply)?
+                        </label>
+                        <div class="button-group">
+                            <div class="button-option">Outlining</div>
+                            <div class="button-option">Edits</div>
+                            <div class="button-option">Grammar</div>
+                        </div>
+                        <input name="paper-help-types" type="hidden" />
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            In <strong>one or two sentences</strong>, tell us what you’re having trouble with
+                        </label>
+                        <textarea name="paper-description" 
+                            type="text" 
+                            class=""
+                            placeholder="Paste text here and/or attach files below..."></textarea>
+                        <small class="characters-remaining">
+                            Character limit (<span class="chars-remaining-count">500</soan> remaining)
+                        </small>
+                        <a href="#" title="See examples">See examples</a>
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            Include the <strong>paper/essay and any relevant materials</strong>
+                        </label>
+                        <textarea name="paper-materials-text" 
+                            type="text" 
+                            class="" 
+                            placeholder="Paste text here and/or attach files below..."></textarea>
+                        <button class="attach-files">Attach file(s)...</button>
+                        <ul class="attached-files-list empty">
+                            <li>No files attached</li>
+                        </ul>
+                        <input name="paper-materials-attachments" val="" type="hidden" />
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <button class="goto-step2">Next</button>
+            </footer>
+        </section>
+
+        <section id="request-step2" class="request-form-step">
+            <header class="request-form-header">
+                <span class="sr-signpost">Step 2 of 2</span>
+                <h1>What <em>type</em> of lesson would you prefer (Choose one)</h1>
+            </header>
+
+            <div class="select-live-vs-written">
+                <label id="live-option">
+                    <h3>Live</h3>
+                    <p>Work in <strong>real-time</strong> with your tutor in a virtual classroom</p>
+                    <a href="#">Learn more</a>
+                    <span>Great for:</span>
+                    <span class="suggested-uses recommended">Pretty much everything</span>
+                    <small class="choose-this-undecided">(Choose this if you're not sure)</small>
+                    <input name="lesson-type-preference" type="checkbox" value="live" class="hidden" />
+                </label>
+
+                <label id="written-option">
+                    <h3>Written</h3>
+                    <p>Your tutor will work <strong>offline</strong> and return a detailed write-up later</p>
+                    <a href="#">Learn more</a>
+                    <span class="suggested-uses">Essay edits, code review</span>
+                    <input name="lesson-type-preference" type="checkbox" value="written" class="hidden" />
+                </label>
+            </div>
+
+            <footer>
+                <button class="submit-request">Submit Request</button>
+            </footer>
+        </section>
+    </form>
+</body>
+</html>

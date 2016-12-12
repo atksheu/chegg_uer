@@ -1,0 +1,310 @@
+h2 {
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+#site-header {
+    .box-sizing(border-box);
+    width: 100%;
+    height: 50px;
+    padding-top: 14px;
+    border-bottom: 2px solid @orange;
+}
+
+#logo {
+    display: block;
+    background: url("img/chegg-tutors-logo@2x.png") no-repeat 0 0;
+    background-size: cover;
+    width: 147px;
+    height: 23px;
+    margin-left: 28px;
+}
+
+#progress-bar {
+    background: #e5e5e5;
+    width: 100%;
+    height: 16px;
+}
+
+#current-step-bar {
+    background: @teal;
+    height: 100%;
+
+    &.step-one { width: 25%; }
+}
+
+#signpost {
+    margin-top: 104px;
+    height: 20px;
+    text-align: center;
+}
+
+#signpost-text {
+    color: #bbb;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+#student-help-request-form {
+    width: @site-width;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.request-form-step {
+    width: 940px;
+    margin-left: 10px;
+    float: left;
+    margin-bottom: 90px;
+    min-height: 300px;
+}
+
+#next-step {
+    float: right;
+}
+
+#previous-step {
+    float: left;
+}
+
+#submit-action {
+    float: right;
+    text-align: right;
+}
+
+#submit-request {
+    float: right;
+    margin-left: 24px;
+}
+
+.feed-forward {
+    float: right;
+}
+
+#choose-help-type {
+    
+}
+
+#form-actions {
+    .clearfix;
+}
+
+.help-type-picker,
+.essay-help-picker {
+    .clearfix;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.help-type-option,
+.essay-help-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    height: 194px;
+    margin-right: 32px;
+    border: 1px solid #bbb;
+    .border-radius(8px);
+    cursor: pointer;
+
+    label {
+        width: 100%;
+        font-size: 24px;
+        font-weight: normal;
+        line-height: 32px;
+        color: #333;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &:hover {
+        border-color: #333;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &.active {
+        margin-top: -5px;
+        margin-left: -5px;
+        margin-right: 27px;
+        margin-bottom: -5px;
+        border: 6px solid @teal;
+
+        &:last-child {
+            margin-right: -5px;
+        }
+    }
+}
+
+.select-live-vs-written {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 624px;
+    margin: 0 auto;
+}
+
+.lesson-type-option {
+    .box-sizing(content-box);
+    width: 300px;
+    height: 430px;
+    .border-radius(6px);
+    cursor: pointer;
+    border: 1px solid #bbb;
+    margin-right: 24px;
+    text-align: center;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    h3 {
+        margin-top: 48px;
+        font-size: 30px;
+        font-weight: 100;
+        color: #000;
+    }
+
+    p {
+        color: #666;
+        margin: 0 36px;
+    }
+
+    .more-info {
+        display: block;
+        color: #bbb;
+        margin-bottom: 27px;
+    }
+
+    .great-for {
+        display: block;
+        font-size: 12px;
+        color: #999;
+        text-transform: uppercase;
+    }
+
+    .suggested-uses {
+        display: block;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .illo {
+        margin: 0 auto;
+        width: 240px;
+        height: 138px;
+        margin-bottom: 18px;
+    }
+
+    .live-lesson-illo {
+        background: url('img/live-illo-inactive@2x.png') no-repeat 0 0;
+        background-size: contain;
+    }
+
+    .written-lesson-illo {
+        background: url('img/written-illo-inactive@2x.png') no-repeat 0 5px;
+        background-size: contain;
+    }
+
+    &:hover {
+        border-color: #333;
+    }
+
+    &.active {
+        border: 6px solid @teal;
+        margin-left: -5px;
+        margin-top: -5px;
+        margin-bottom: -5px;
+        margin-right: 19px;
+
+        h3 {
+            color: @teal;
+            font-weight: 500;
+        }
+
+        .live-lesson-illo {
+            background-image: url('img/live-illo-active@2x.png');
+        }
+
+        .written-lesson-illo {
+            background-image: url('img/written-illo-active@2x.png');
+        }
+
+        &:last-child {
+            margin-right: -5px;
+        }
+    }
+}
+
+.input-group {
+    display: block;
+    margin: 0 auto;
+
+    &.cozy {
+        width: 460px;
+    }
+
+    &.comfortable {
+        width: 620px;
+    }
+
+    input[type=text],
+    textarea {
+        width: 100%;
+    }
+}
+
+.counter {
+    display: block;
+    text-align: right;
+    color: #666;
+    margin-top: -4px;
+    margin-bottom: 8px;
+}
+
+.good-bad-examples {
+    list-style: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: #666;
+    padding-left: 0;
+    margin-top: 20px;
+
+    > li {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        padding-left: 40px;
+
+        &.good {
+            background: url("img/good-checkmark.png") no-repeat 0 0;
+        }
+
+        &.bad {
+            background: url("img/bad-ex.png") no-repeat 0 0;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
+.input-tip, .suggestion {
+    font-size: 16px;
+    line-height: 24px;
+    color: #666;
+}
+
+.dropzone {
+    min-height: 115px;
+    width: 100%;
+    .border-radius(8px);
+    border: 3px dashed #ddd;
+    text-align: center;
+}
