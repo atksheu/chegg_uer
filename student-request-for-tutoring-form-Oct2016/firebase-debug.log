@@ -1,0 +1,14 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      node /usr/local/bin/firebase serve
+[debug] CLI Version:  3.2.1
+[debug] Platform:     darwin
+[debug] Node Version: v0.12.6
+[debug] Time:         Fri Jan 13 2017 14:35:36 GMT-0800 (PST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /Users/alansheu/Documents/github/chegg_uer/student-request-for-tutoring-form-Oct2016
+[info] Public Directory: ./
+[info] 
+[info] Server listening at: http://localhost:5000

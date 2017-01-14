@@ -24,7 +24,7 @@ input[type=text] {
 
 textarea {
     .box-sizing(border-box);
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2em;
     color: #333;
     border: 2px solid #e5e5e5;
@@ -37,5 +37,47 @@ textarea {
 
     &:focus {
         border: 2px solid @teal;
+    }
+}
+
+.button-group {
+    border: 2px solid @orange;
+    .border-radius(10px);
+    height: 40px;
+    .clearfix;
+}
+
+.button-group-option {
+    float: left;
+    background: #fff;
+    color: #666;
+    font-size: 16px;
+    line-height: 40px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    width: 135px;
+    height: 100%;
+
+    &:first-child {
+        .left-corners-radius(6px);
+    }
+
+    &:last-child {
+        .right-corners-radius(6px);
+    }
+
+    &:hover {
+        background: #f5f5f5;
+    }
+
+    &.active {
+        background: @orange;
+        color: #fff;
+
+        &:hover {
+            background: @orange;
+        }
     }
 }
