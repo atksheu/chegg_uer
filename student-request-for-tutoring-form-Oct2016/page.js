@@ -55,7 +55,6 @@ $(function() {
     // Saves message on form submit.
     requestForm.on('submit', function(e) {
         e.preventDefault();
-        console.log('Form submitted');
 
         var first_name = nameInput.val();
         var grade_level = gradeLevelOptions.filter(':checked').val();
@@ -107,18 +106,9 @@ $(function() {
             communication_preference: communication_preference
         }
 
-        // console.log('first_name: ' + first_name);
-        // console.log('grade_level: ' + grade_level);
-        // console.log('subject: ' + subject);
-        // console.log('sub_topic: ' + sub_topic);
-        // console.log('help_type: ' + help_type);
-        // console.log('attachments: ' + attachments);
-        // console.log('additional_text: ' + additional_text);
-        // console.log('question: ' + question);
-        // console.log('lesson_type: ' + lesson_type);
-        // console.log('communication_preference: ' + communication_preference);
-
         newPostForCurrentUser2(requestArray);
+
+        console.log('Form submitted');
 
         // var text = messageInput.value;
         // var title = titleInput.value;
