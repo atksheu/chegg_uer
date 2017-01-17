@@ -29,7 +29,6 @@ h2 {
 #student-help-request-form {
     width: @site-width;
     margin: 0 auto;
-    overflow: hidden;
 
     > section {
         padding: 60px 80px;
@@ -299,6 +298,13 @@ h2 {
         height: 24px;
         right: 12px;
         top: 12px;
+        background: url('img/help-icon@2x.png') no-repeat 0 0;
+        background-size: contain;
+        opacity: 0.3;
+
+        &:hover {
+            opacity: 0.7;
+        }
     }
 
     h3 {
@@ -308,7 +314,7 @@ h2 {
         margin-top: 21px;
     }
 
-    p {
+    > p {
         font-size: 14px;
         line-height: 18px;
         color: #666;
@@ -415,11 +421,26 @@ h2 {
 
     textarea {
         width: 540px;
-        height: 72px;
+        height: 48px;
     }
 
     .additional-materials-inputs {
         width: 540px;
+    }
+
+    .popover {
+        min-width: 300px;
+        max-width: 300px;
+        font-family: Aspira;
+
+        ul {
+            padding-left: 16px;
+            margin-bottom: 0;
+        }
+
+        .popover-content {
+            padding: 16px;
+        }
     }
 }
 
