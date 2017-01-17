@@ -139,15 +139,15 @@
                 <ul id="help-type-options">
                     <li id="homework-type-option" class="help-type-option" data-help-type="homework">
                         <h3>Homework</h3>
-                        <small>e.g. problem set, worksheet</small>
+                        <small>e.g. problem set, assignment</small>
                         <input type="radio" class="invis" name="help_type" value="homework" />
                     </li>
                     <li id="exam-type-option" class="help-type-option" data-help-type="exam">
-                        <h3>Studying for an exam</h3>
+                        <h3>Studying for<br />a test</h3>
                         <input type="radio" class="invis" name="help_type" value="exam" />
                     </li>
                     <li id="paper-type-option" class="help-type-option" data-help-type="paper">
-                        <h3>A paper / <br />essay</h3>
+                        <h3>A paper</h3>
                         <input type="radio" class="invis" name="help_type" value="paper" />
                     </li>
                     <li id="other-type-option" class="help-type-option" data-help-type="other">
@@ -183,11 +183,9 @@
                         <label class="form-group-label">
                             In one or two sentences, what would you like the tutor to explain?
                         </label>
-                        <textarea name="homework_question" class="question-input"></textarea>
-                        <small>
-                            Character limit: 
-                            <span class="characters-remaining">500</span>
-                        </small>
+                        <div class="question-input-group">
+                            <textarea name="homework_question" class="question-input charlimited"></textarea>
+                        </div>
                     </div>
                 </div>
 
@@ -197,11 +195,9 @@
                         <label class="form-group-label">
                             In one or two sentences, what would you like the tutor's help with?
                         </label>
-                        <textarea name="exam_question" class="question-input"></textarea>
-                        <small>
-                            Character limit: 
-                            <span class="characters-remaining">500</span>
-                        </small>
+                        <div class="question-input-group">
+                            <textarea name="exam_question" class="question-input charlimited"></textarea>
+                        </div>
                     </div>
                     <div class="form-input-group">
                         <label class="form-group-label">
@@ -245,11 +241,11 @@
                         <label class="form-group-label">
                             In one or two sentences, what would you like the tutor's help with?
                         </label>
-                        <textarea name="paper_question" class="question-input"></textarea>
-                        <small>
+                        <textarea name="paper_question" class="question-input charlimited"></textarea>
+                        <!-- <small>
                             Character limit: 
                             <span class="characters-remaining">500</span>
-                        </small>
+                        </small> -->
                     </div>
                 </div>
 
@@ -259,11 +255,11 @@
                         <label class="form-group-label">
                             In one or two sentences, what would you like the tutor's help with?
                         </label>
-                        <textarea name="other_question" class="question-input"></textarea>
-                        <small>
+                        <textarea name="other_question" class="question-input charlimited"></textarea>
+                        <!-- <small>
                             Character limit: 
                             <span class="characters-remaining">500</span>
-                        </small>
+                        </small> -->
                     </div>
                     <div class="form-input-group">
                         <label class="form-group-label">
@@ -289,30 +285,42 @@
         <section id="preferences" class="last-section">
             <div class="form-input-group">
                 <label class="form-group-label">Preferred lesson type</label>
-                <ul id="lesson-type-options">
-                    <li id="live-lesson-option" class="lesson-type-option active">
-                        <i class="help-icon"></i>
+                <div id="lesson-type-options">
+                    <div id="live-lesson-option" class="lesson-type-option active">
+                        <a class="help-icon" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            tabindex="0"
+                            role="button"
+                            data-animation=true
+                            data-html=true
+                            data-content="<p>Your traditional tutoring experience—just online. Our state-of-the-art virtual classroom makes collaboration effortless with:</p><ul><li>Shared whiteboard</li><li>Shared document editor</li><li>Text-only, audio and/or video chat  (You choose)</li><li>Screensharing</li></ul>">
+                        </a>
                         <h3>Live</h3>
                         <p>
-                            Work with your tutor <br />in our virtual classroom
+                            Work in real-time with your tutor <br />in our virtual classroom
                         </p>
                         <span class="suggested-use recommended">
                             Recommended
                         </span>
                         <input type="radio" class="invis" name="lesson_type" checked=true value="live" />
-                    </li>
-                    <li id="written-lesson-option" class="lesson-type-option">
-                        <i class="help-icon"></i>
+                    </div>
+                    <div id="written-lesson-option" class="lesson-type-option">
+                        <a class="help-icon" data-toggle="popover" data-trigger="hover" data-placement="top"
+                            tabindex="0"
+                            role="button"
+                            data-animation=true
+                            data-html=true
+                            data-content="<p>In some situations (e.g. essay help), it can be more convenient or effective to let the tutor work separately and return later with comments or a step-by-step explanation.</p><ul><li>You’ll specify a deadline</li><li>Your tutor will work offline and return a written lesson based on what you asked.</li></ul>">
+                        </a>
                         <h3 class="">Written</h3>
                         <p>
-                            Tutor returns written <br />comments or explanation
+                            Your tutor works offline and<br />returns a written explanation
                         </p>
                         <span class="suggested-use">
                             Good for essay edits, code review
                         </span>
                         <input type="radio" class="invis" name="lesson_type" value="written" />
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
             <div id="communication-preferences" class="form-input-group">
                 <label class="form-group-label">Preferred communication</label>

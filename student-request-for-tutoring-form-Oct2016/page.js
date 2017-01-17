@@ -22,6 +22,7 @@ $(function() {
     enableDynamicTextFields();
     enableCharLimitedTextareas();
     enableTextareaToggles();
+    enablePopovers();
 
     firebase.auth().signInAnonymously().catch(function(error) {
       // Handle Errors here.
@@ -106,45 +107,21 @@ $(function() {
             communication_preference: communication_preference
         }
 
+        // Validate that all required fields have been filled in
+
+        // If no errors, create new entry in Firebase database
         newPostForCurrentUser2(requestArray);
 
         console.log('Form submitted');
-
-        // var text = messageInput.value;
-        // var title = titleInput.value;
-        
-        // if (text && title) {
-        //     newPostForCurrentUser(title, text).then(function() {
-        //         myPostsMenuButton.click();
-        //     });
-        //     messageInput.value = '';
-        //     titleInput.value = '';
-        // }
     });
 });
 
 /**
  * Creates a new post for the current user.
  */
-function newPostForCurrentUser(title, text) {
-  // [START single_value_read]
-  var userId = firebase.auth().currentUser.uid;
-  return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-    var username = snapshot.val().username;
-    // [START_EXCLUDE]
-    return writeNewPost(firebase.auth().currentUser.uid, username,
-        firebase.auth().currentUser.photoURL,
-        title, text);
-    // [END_EXCLUDE]
-  });
-  // [END single_value_read]
-}
-
-/**
- * Creates a new post for the current user.
- */
 function newPostForCurrentUser2(requestData) {
   // [START single_value_read]
+  alert('Thank you for filling this out!');
   var userId = firebase.auth().currentUser.uid;
   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
     // var username = snapshot.val().username;
@@ -230,32 +207,8 @@ function watchProgress() {
 
 }
 
-function getCurrentStep() {
-    // console.log('in getCurrentStep');
-}
-
-function validateFormStep() {
-    // console.log('in validateFormStep...');
-    return true;
-    // Check that all required fields have been filled out
-
-    // If no errors occur, return true. Otherwise return false with error code.
-}
-
-function displayError() {
-    // Highlight offending fields
-
-    // Display message
-}
-
 function resetErrors() {
     // Reset all errors on form
-}
-
-function submitForm() {
-    // Remove any possible form data that isn't relevant (i.e. if more than one branch was started)
-
-    // Submit data to Firebase
 }
 
 function enablePickers() {
@@ -361,4 +314,9 @@ function enableCharLimitedTextareas() {
         counterText: 'Characters left: ',
         css: 'counter'
     });
+}
+
+function enablePopovers() {
+    console.log('popovers');
+    $('.help-icon').popover();
 }
