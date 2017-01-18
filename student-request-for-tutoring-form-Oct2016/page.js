@@ -1,4 +1,4 @@
-var submitBtn, requestForm, gradeLevelOptions, subjectInput, subtopicInput, fileRefsArray
+var submitBtn, requestForm, gradeLevelOptions, subjectInput, subtopicInput, fileRefsArray, fileDLArray
 var storage = firebase.storage();
 var storageRef = firebase.storage().ref();
 
@@ -6,7 +6,9 @@ $(function() {
     submitBtn = $('#form-submit');
     requestForm = $('#student-help-request-form');
     fileRefsArray = [];
+    fileDLArray = [];
     
+    testGroupInput = $('input[name=test_group]');
     nameInput = $('input[name=first_name]');
     gradeLevelOptions = $('input[name=grade_level]');
     subjectInput = $('input[name=subject]');
@@ -48,7 +50,6 @@ $(function() {
     // Click handler for submit button
     submitBtn.click(function(e) {
         e.preventDefault();
-        console.log('submit clicked');
         requestForm.submit();
         return false;
     });
@@ -57,33 +58,45 @@ $(function() {
     requestForm.on('submit', function(e) {
         e.preventDefault();
 
+        var test_group = testGroupInput.val();
         var first_name = nameInput.val();
         var grade_level = gradeLevelOptions.filter(':checked').val();
         var subject = subjectInput.val();
         var sub_topic = subtopicInput.val();
         var help_type = helpTypeOptions.filter(':checked').val();
+
+        if (!(first_name && grade_level && subject && sub_topic && help_type)) {
+            $('#form-errors').modal('show');
+            return false;
+        }
+
         var attachments = '';
+        var attachment_urls = '';
         var additional_text, question;
         
         if (help_type) {
             var detailsContext = '#' + helpTypeOptions.filter(':checked').val() + '-details-fieldset';
-
-            console.log('detailsContext: ' + detailsContext);
             
             for (var i = 0; i < fileRefsArray.length; i++) {
                 // get item
                 if (i != 0) {
                     attachments = attachments + ', ' + fileRefsArray[i];
+                    attachment_urls = attachment_urls + ', ' + fileDLArray[i];
                 } else {
-                    attachments = fileRefsArray[i];
+                    attachments = fileRefsArray[i] + '';
+                    attachment_urls = fileDLArray[i] + '';
                 }
             }
 
-            console.log('attachments: ' + attachments);
+            if(!attachments) { attachments = ''; }          // Need to set to empty string if "undefined"
+            if(!attachment_urls) { attachment_urls = ''; }
+
             additional_text = $(detailsContext).find('textarea.additional-text').val();
+            if(!additional_text) { additional_text = ''; }  // Need to set to empty string if "undefined"
+
             question = $(detailsContext).find('textarea.question-input').val();
+            if(!question) { question = ''; }                // Need to set to empty string if "undefined"
         } else {
-            console.log('no help type selected');
         }
 
         var lesson_type = lessonTypeOptions.filter(':checked').val();
@@ -95,17 +108,21 @@ $(function() {
         }
         
         var requestArray = {
+            test_group: test_group,
             first_name: first_name,
             grade_level: grade_level,
             subject: subject,
             sub_topic: sub_topic,
             help_type: help_type,
             attachments: attachments,
+            attachment_urls: attachment_urls,
             additional_text: additional_text,
             question: question,
             lesson_type: lesson_type,
             communication_preference: communication_preference
         }
+
+        console.log(requestArray);
 
         // Validate that all required fields have been filled in
 
@@ -121,8 +138,9 @@ $(function() {
  */
 function newPostForCurrentUser2(requestData) {
   // [START single_value_read]
-  alert('Thank you for filling this out!');
   var userId = firebase.auth().currentUser.uid;
+  console.log(userId);
+
   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
     // var username = snapshot.val().username;
     // [START_EXCLUDE]
@@ -139,6 +157,7 @@ function newPostForCurrentUser2(requestData) {
 function writeNewRequest(uid, requestData) {
   // A post entry.
   var finalRequestData = {
+    test_group: requestData['test_group'],
     first_name: requestData['first_name'],
     uid: uid,
     grade_level: requestData['grade_level'],
@@ -146,12 +165,15 @@ function writeNewRequest(uid, requestData) {
     sub_topic: requestData['sub_topic'],
     help_type: requestData['help_type'],
     attachments: requestData['attachments'],
+    attachment_urls: requestData['attachment_urls'],
     additional_text: requestData['additional_text'],
     question: requestData['question'],
     lesson_type: requestData['lesson_type'],
     communication_preference: requestData['communication_preference']
   };
 
+  console.log('finalRequestData: ');
+  console.log(finalRequestData);
   // Get a key for a new Request.
   var newPostKey = firebase.database().ref().child('requests').push().key;
 
@@ -160,6 +182,7 @@ function writeNewRequest(uid, requestData) {
   updates['/requests/' + newPostKey] = finalRequestData;
   updates['/user-requests/' + uid + '/' + newPostKey] = finalRequestData;
 
+  $('#form-success').modal('show');
   return firebase.database().ref().update(updates);
 }
 // [END write_fan_out]
@@ -256,7 +279,7 @@ function enableHelpTypePicker() {
 
 function enableFileDialogs() {
     var attachFileButtons = $('.button-file').on('click', function(event) {
-        var files, file, fileRef;
+        var files, file, fileRef, fileDLurl;
         var fileList = '';
         var fileInput = $(event.currentTarget).parent().find('input[type=file]');
         var filesListEl = $(event.currentTarget).parent().find('.files-list');
@@ -264,7 +287,8 @@ function enableFileDialogs() {
         fileInput.trigger('click');
         fileInput.on('change', function(e){
             files = fileInput.get(0).files;
-            console.log('files: ' + files);
+            fileRefsArray = [];
+            fileDLArray = [];
 
             for (var i = 0; i < files.length; i++) {
                 // get item
@@ -276,10 +300,40 @@ function enableFileDialogs() {
                 fileRef = storageRef.child('attachments/' + getFileNameMinusExtension(file.name) + "-" + 
                     Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + "." + getFilePathExtension(file.name));
 
-                console.log("fileRef: " + fileRef);
+                var uploadTask = fileRef.put(file);
                 
-                fileRef.put(file).then(function(snapshot) {
-                    console.log('Uploaded a file: ' + fileRef);
+                uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                }, function(error) {
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            console.log("User doesn't have permission to access the object");
+                            break;
+
+                        case 'storage/canceled':
+                            console.log("User canceled the upload");
+                            break;
+
+                        case 'storage/unknown':
+                            console.log("Unknown error occurred, inspect error.serverResponse");
+                            break;
+                    }
+                }, function() {
+                    // Upload completed successfully, now we can get the download URL
+                    fileDLurl = uploadTask.snapshot.downloadURL;
+                    console.log("download url: " + fileDLurl);
+                    fileDLArray.push(fileDLurl);
+
                 });
 
                 fileList = fileList + '<p>' + fileRef.name + '</p>';
@@ -317,6 +371,5 @@ function enableCharLimitedTextareas() {
 }
 
 function enablePopovers() {
-    console.log('popovers');
     $('.help-icon').popover();
 }
