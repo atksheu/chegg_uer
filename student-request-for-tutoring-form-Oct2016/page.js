@@ -330,15 +330,14 @@ function enableFileDialogs() {
                     }
                 }, function() {
                     // Upload completed successfully, now we can get the download URL
-                    fileDL = uploadTask.snapshot.downloadURL;
-                });
+                    fileDLurl = uploadTask.snapshot.downloadURL;
+                    console.log("download url: " + fileDLurl);
+                    fileDLArray.push(fileDLurl);
 
-                console.log(fileDLurl);
-                console.log("download url: " + fileDLurl);
+                });
 
                 fileList = fileList + '<p>' + fileRef.name + '</p>';
                 fileRefsArray.push(fileRef);
-                fileDLArray.push(fileDLurl)
             }
 
             filesListEl.show().html(fileList);
