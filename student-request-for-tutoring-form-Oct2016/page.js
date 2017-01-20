@@ -371,5 +371,5 @@ function enableCharLimitedTextareas() {
 }
 
 function enablePopovers() {
-    $('.help-icon').popover();
+    $('.lesson-type-option').popover();
 }
