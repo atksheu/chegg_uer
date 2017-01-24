@@ -1,0 +1,464 @@
+body {
+    font-weight: 300;
+    padding-bottom: 60px;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+#site-header {
+    .box-sizing(border-box);
+    width: 100%;
+    height: 50px;
+    padding-top: 14px;
+    border-bottom: 2px solid @orange;
+}
+
+#logo {
+    display: block;
+    background: url("img/chegg-tutors-logo@2x.png") no-repeat 0 0;
+    background-size: cover;
+    width: 147px;
+    height: 23px;
+    margin-left: 28px;
+}
+
+#student-help-request-form {
+    width: @site-width;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#form-slides-container {
+    position: relative;
+    width: 9999px;
+    left: 0;
+    .clearfix;
+
+    #basic-info {
+        padding-top: 90px;
+    }
+
+    .form-slide {
+        padding: 30px 80px;
+        float: left;
+    }
+}
+
+#form-header {
+    position: relative;
+    text-align: center;
+}
+
+#progress {
+    position: relative;
+    display: inline-block;
+    .clearfix;
+
+    h3 {
+        font-size: 14px;
+        font-weight: 400;
+        color: #999;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .progress-step {
+        float: left;
+        padding: 3px 24px;
+        border-bottom: 3px solid #fff;
+
+        &.current {
+            border-bottom-color: @orange;
+
+            h3 {
+                color: #333;
+            }
+        }
+    }
+
+    .progress-step, h3 {
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+    }
+}
+
+#escape-to-results {
+    text-align: left;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+
+#grade-level-picker {
+    float: left;
+}
+
+#sub-topic {
+    float: left;
+}
+
+#help-type-options {
+    .clearfix;
+    padding-left: 1px;
+    display: inline-block;
+}
+
+.help-type-option {
+    .box-sizing(border-box);
+    .border-radius(6px);
+    width: 150px;
+    height: 200px;
+    padding: 0 7px;
+    margin-right: 6px;
+    border: 1px solid #ddd;
+    float: left;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+
+    h3 {
+        margin-top: 124px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #333;
+    }
+
+    small {
+        font-size: 12px;
+        line-height: 12px;
+        margin-top: -8px;
+        display: block;
+        color: #666;
+    }
+
+    &:first-child {
+        margin-left: -1px;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &:hover {
+        border-color: #aaa;
+    }
+
+    &.active {
+        border: 2px solid @orange;
+        width: 152px;
+        height: 202px;
+        margin-left: -1px;
+        margin-right: 5px;
+        margin-top: -1px;
+        margin-bottom: -1px;
+
+        &:first-child {
+            margin-left: -2px;
+        }
+
+        &:last-child {
+            margin-right: -1px;
+        }
+    }
+}
+
+#homework-type-option {
+    background-image: url('img/homework-icon@2x.png');
+    background-position: center 72px;
+    background-size: 37px;
+}
+
+#exam-type-option {
+    background-image: url('img/exam-icon@2x.png');
+    background-position: center 66px;
+    background-size: 35px;
+}
+
+#paper-type-option {
+    background-image: url('img/paper-icon@2x.png');
+    background-position: center 66px;
+    background-size: 35px;
+}
+
+#other-type-option {
+    background-image: url('img/other-icon@2x.png');
+    background-position: center 68px;
+    background-size: 35px;
+}
+
+#details-empty {
+    width: 780px;
+    height: 230px;
+    background: #f1f1f1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #bbb;
+    padding-top: 100px;
+}
+
+#details-fieldset .form-group-label {
+    padding-top: 0;
+}
+
+#details {
+    padding-bottom: 160px;
+}
+
+#details .form-group-label.emphatic {
+    float: none;
+    display: block;
+    font-size: 24px;
+    line-height: 36px;
+    padding-bottom: 12px;
+    text-align: center;
+    width: 100%;
+}
+
+#details > .form-input-group {
+    margin-top: 0;
+    text-align: center;
+}
+
+.help-type-details {
+    .form-group-label {
+        font-size: 16px;
+        line-height: 24px;
+        color: #333;
+    }
+
+    small {
+        display: block;
+        text-align: right;
+    }
+}
+
+#lesson-type-options {
+    float: left;
+    padding: 0;
+    .clearfix;
+}
+
+.lesson-type-option {
+    .box-sizing(border-box);
+    .border-radius(10px);
+    border: 1px solid #ddd;
+    width: 256px;
+    height: 235px;
+    margin-right: 30px;
+    position: relative;
+    text-align: center;
+    list-style: none;
+    float: left;
+    cursor: pointer;
+    background-size: 25%;
+    background-repeat: no-repeat;
+
+    &#written-lesson-option {
+        margin-right: 0;
+    }
+
+    &:hover {
+        border-color: #aaa;
+    }
+
+    &.active {
+        border: 4px solid @orange;
+        width: 262px;
+        height: 241px;
+        margin-left: -3px;
+        margin-top: -3px;
+        margin-bottom: -3px;
+        margin-right: 27px;
+
+        &:last-child {
+            margin-right: -3px;
+        }
+    }
+
+    .help-icon {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        right: 12px;
+        top: 12px;
+        background: url('img/help-icon@2x.png') no-repeat 0 0;
+        background-size: contain;
+        opacity: 0.3;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    h3 {
+        font-size: 24px;
+        font-weight: 500;
+        color: #333;
+        margin-top: 21px;
+    }
+
+    > p {
+        font-size: 14px;
+        line-height: 18px;
+        color: #666;
+        margin-top: 100px;
+    }
+
+    .suggested-use {
+        font-size: 14px;
+        color: #999;
+
+        &.recommended {
+            font-weight: 700;
+            color: @orange;
+        }
+    }
+}
+
+#live-lesson-option {
+    background-image: url('img/live-icon@2x.png');
+    background-position: center 77px;
+    background-size: 79px;
+}
+
+#written-lesson-option {
+    background-image: url('img/written-icon@2x.png');
+    background-position: center 78px;
+    background-size: 59px;
+}
+
+#preferred-communication {
+    padding-top: 12px;
+    float: left;
+    .clearfix;
+
+    label {
+        display: block;
+        font-weight: 400;
+        height: 40px;
+
+        &.active {
+            font-weight: 700;
+        }
+    }
+
+    input[type=radio] {
+        display: inline-block;
+        margin-right: 15px;
+    }
+}
+
+#form-actions {
+    .clearfix;
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    left: 0;
+    bottom: 0;
+    padding: 20px 80px;
+}
+
+#next-step {
+    float: right;
+}
+
+#previous-step {
+    float: left;
+}
+
+.feed-forward {
+    float: right;
+    margin-right: 36px;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: right;
+
+    strong {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    &.invis {
+        display: none;
+    }
+}
+
+.toggle-textarea {
+    cursor: pointer;
+}
+
+.additional-text {
+    margin-top: 12px;
+}
+
+ .additional-materials-inputs {
+    float: left;
+ }
+
+.input-clarification {
+    display: block;
+    font-size: 14px;
+    font-style: italic;
+    color: #666;
+}
+
+#form-submit {
+    float: right;
+}
+
+.student-request-prototype {
+    .form-group-label {
+        width: 240px;
+        padding-right: 20px;
+        float: left;
+        padding-top: 12px;
+    }
+
+    input[type=text] {
+        width: 460px;
+        height: 44px;
+    }
+
+    textarea {
+        width: 540px;
+        height: 48px;
+    }
+
+    .counter {
+        display: block;
+        text-align: right;
+        padding-right: 20px;
+    }
+
+    .additional-materials-inputs {
+        width: 540px;
+    }
+
+    .popover {
+        min-width: 300px;
+        max-width: 300px;
+        font-family: Aspira;
+
+        ul {
+            padding-left: 16px;
+            margin-bottom: 0;
+        }
+
+        .popover-content {
+            padding: 16px;
+        }
+    }
+}
+
+
