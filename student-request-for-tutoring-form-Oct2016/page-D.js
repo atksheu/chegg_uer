@@ -1,36 +1,33 @@
-var submitBtn, requestForm, gradeLevelOptions, subjectInput, subtopicInput, fileRefsArray, fileDLArray,
-    previousBtn, nextBtn, currentSlide, totalSlides, slideWidth, slideContainer, progressSteps;
+var submitBtn, requestForm, fileRefsArray, fileDLArray, testGroupInput,
+    subjectInput, subtopicInput, gradeLevelOptions, helpTypeOptions, 
+    questionInput, attachmentsInput, additionaltextInput, lessonTypeOptions, commPreferenceOptions,
+    nameInput, emailInput;
 var storage = firebase.storage();
 var storageRef = firebase.storage().ref();
 
 $(function() {
     submitBtn = $('#form-submit');
-    feedForwardText = $('.feed-forward');
-    progressSteps = $('.progress-step');
     requestForm = $('#student-help-request-form');
     fileRefsArray = [];
     fileDLArray = [];
-    previousBtn = $('#previous-step');
-    nextBtn = $('#next-step');
-    slideContainer = $('#form-slides-container');
-    
     testGroupInput = $('input[name=test_group]');
-    nameInput = $('input[name=first_name]');
-    gradeLevelOptions = $('input[name=grade_level]');
+
     subjectInput = $('input[name=subject]');
     subtopicInput = $('input[name=sub_topic]');
-    helpTypeOptions = $('input[name=help_type]');
+    gradeLevelInputs = $('input[name=grade_level]');
+
+    helpTypeInputs = $('input[name=help_type]');
     questionInput = $('textarea[name=question]');
-    additionalTextInput = $('textarea[name=additional_text]');
-    lessonTypeOptions = $('input[name=lesson_type]');
-    commPreferenceOptions = $('input[name=communication_preference]');
+    attachmentsInput = $('input[name=attachments]');
+    additionaltextInput = $('textarea[name=materials_text]');
 
-    slideWidth = 960;
-    totalSlides = 3;
+    lessonTypeInputs = $('input[name=lesson_type]');
+    commPreferenceInputs = $('input[name=communication_preference]');
 
-    enableNavigation();
+    nameInput = $('input[name=full_name]');
+    emailInput = $('input[name=email');
+
     enablePickers();
-    enableHelpTypePicker();
     enableFileDialogs();
     enableDynamicTextFields();
     enableCharLimitedTextareas();
@@ -69,23 +66,29 @@ $(function() {
     requestForm.on('submit', function(e) {
         e.preventDefault();
 
+//     subjectInput, subtopicInput, gradeLevelOptions, helpTypeOptions, 
+//     questionInput, attachmentsInput, additionaltextInput, lessonTypeOptions, commPreferenceOptions,
+//     nameInput, emailInput;
+
+
         var test_group = testGroupInput.val();
-        var first_name = nameInput.val();
-        var grade_level = gradeLevelOptions.filter(':checked').val();
+
         var subject = subjectInput.val();
         var sub_topic = subtopicInput.val();
-        var help_type = helpTypeOptions.filter(':checked').val();
-        var question = questionInput.val();
-        var additional_text = additionalTextInput.val();
-        if(!question) { question = ''; }                // Need to set to empty string if "undefined"
-        if(!additional_text) { additional_text = ''; }  // Need to set to empty string if "undefined"
-        var attachments = '';
-        var attachment_urls = '';
+        var grade_level = gradeLevelInputs.filter(':checked').val();
+        var full_name = nameInput.val();
+        var email = emailInput.val();
 
-        if (!(first_name && grade_level && subject && sub_topic && help_type && question)) {
+        var help_type = helpTypeInputs.filter(':checked').val();
+
+        // Check that required fields are filled out
+        if (!(full_name && email && subject && sub_topic && grade_level && help_type)) {
             $('#form-errors').modal('show');
             return false;
         }
+
+        var attachments = '';
+        var attachment_urls = '';
         
         for (var i = 0; i < fileRefsArray.length; i++) {
             // get item
@@ -99,20 +102,26 @@ $(function() {
         }
 
         if(!attachments) { attachments = ''; }          // Need to set to empty string if "undefined"
-        if(!attachment_urls) { attachment_urls = ''; }
+        if(!attachment_urls) { attachment_urls = ''; }  // Need to set to empty string if "undefined"
 
-        var lesson_type = lessonTypeOptions.filter(':checked').val();
+        var additional_text = additionaltextInput.val();
+        if(!additional_text) { additional_text = ''; }  // Need to set to empty string if "undefined"
+
+        var question = questionInput.val();
+        if(!question) { question = ''; }                // Need to set to empty string if "undefined"
+
+        var lesson_type = lessonTypeInputs.filter(':checked').val();
         var communication_preference;
 
         if (lesson_type == 'live') {
-            communication_preference = commPreferenceOptions.filter(':checked').val();    
+            communication_preference = commPreferenceInputs.filter(':checked').val();    
         } else {
-            communication_preference = '';
+            communication_preference = '';              // Make sure that comm preference is set to empty if not live
         }
         
         var requestArray = {
             test_group: test_group,
-            first_name: first_name,
+            full_name: full_name,
             grade_level: grade_level,
             subject: subject,
             sub_topic: sub_topic,
@@ -161,7 +170,7 @@ function writeNewRequest(uid, requestData) {
   // A post entry.
   var finalRequestData = {
     test_group: requestData['test_group'],
-    first_name: requestData['first_name'],
+    full_name: requestData['full_name'],
     uid: uid,
     grade_level: requestData['grade_level'],
     subject: requestData['subject'],
@@ -190,32 +199,8 @@ function writeNewRequest(uid, requestData) {
 }
 // [END write_fan_out]
 
-/**
- * Saves a new post to the Firebase DB.
- */
-// [START write_fan_out]
-function writeNewPost(uid, username, picture, title, body) {
-  // A post entry.
-  var postData = {
-    author: username,
-    uid: uid,
-    body: body,
-    title: title,
-    starCount: 0,
-    authorPic: picture
-  };
 
-  // Get a key for a new Post.
-  var newPostKey = firebase.database().ref().child('posts').push().key;
 
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  var updates = {};
-  updates['/posts/' + newPostKey] = postData;
-  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-  return firebase.database().ref().update(updates);
-}
-// [END write_fan_out]
 function getFileNameMinusExtension(path) {
     var input = path;
     var output = input.substr(0, input.lastIndexOf('.')) || input;
@@ -229,110 +214,21 @@ function getFilePathExtension(path) {
     return filename.substr(lastIndex + 1);
 }
 
-function enableNavigation() {
-    nextBtn.on('click', function(event) {
-        event.preventDefault();
-        currentSlide = getCurrentSlide();
-
-        var destination = getNextSlide(currentSlide);
-        console.log('destination (next): ' + destination);
-        gotoSlide(destination);
-    });
-
-    previousBtn.on('click', function(event) {
-        event.preventDefault();
-        currentSlide = getCurrentSlide();
-
-        var destination = getPreviousSlide(currentSlide);
-        console.log('destination (previous): ' + destination);
-        gotoSlide(destination);
-    });
-}
-
-function getCurrentSlide() {
-    var currentPosition = Math.abs(parseFloat(slideContainer.css('left')));
-    console.log('currentPosition: ' + currentPosition);
-    currentStep = (currentPosition / slideWidth) + 1;
-
-    console.log('currentStep: ' + currentStep);
-    return currentStep;
-}
-
-function getNextSlide(currentSlide) {
-    var nextSlide;
-
-    console.log('getNextSlide > currentSlide: ' + currentSlide);
-    console.log('totalSlides: ' + totalSlides);
-
-    if (currentSlide < totalSlides) {
-        nextSlide = currentSlide + 1
-        console.log('nextSlide: ' + nextSlide);
-        return nextSlide;
-    } else {
-        return 'error';
-    }
-}
-
-function getPreviousSlide(currentSlide) {
-    var previousSlide;
-
-    if (currentSlide > 1) {
-        previousSlide = currentSlide - 1
-        return previousSlide;
-    } else {
-        return 'error';
-    }
-}
-
-function gotoSlide(destination) {
-    
-    var currentFormSlide = '#form-slide-' + (destination - 1);
-    var destFormSlide = '#form-slide-' + destination;
-    var destinationProgressStep = '#progress-step-' + destination;
-
-    // Scroll destination slide into view
-    var destLeft = -1 * (destination - 1) * slideWidth;
-    destLeft = destLeft + 'px';
-    slideContainer.stop().animate({left: destLeft}, 400);
-
-    // Fade out current slide
-    $(currentFormSlide).stop().animate({visibility: 0}, 400);
-
-    // Fade in destination slide
-    $(currentFormSlide).stop().animate({visibility: 1}, 400);
-
-    // Update progress bar
-    console.log('destinationProgressStep: ' + destinationProgressStep);
-    progressSteps.not(destinationProgressStep).removeClass('current')
-    $(destinationProgressStep).addClass('current');
-    
-
-
-    // Update navigation controls
-    if(destination != 1) {
-        previousBtn.stop().fadeIn();
-    } else {
-        previousBtn.stop().hide();
-    }
-
-    if(destination == totalSlides) {
-        nextBtn.stop().hide();
-        submitBtn.stop().fadeIn();
-    } else {
-        nextBtn.stop().fadeIn();
-        submitBtn.stop().hide();
-    }
-}
-
-function resetErrors() {
-    // Reset all errors on form
-}
-
 function enablePickers() {
-    // Button group
-    var buttonGroupOptions = $('.button-group-option');
-    buttonGroupOptions.click(function(event) {
-        buttonGroupOptions.not(event.currentTarget).removeClass('active').each(function(i, val) {
+    // Grade level picker
+    var gradeLevelOptions = $('.grade-level-option');
+    gradeLevelOptions.click(function(event) {
+        gradeLevelOptions.not(event.currentTarget).removeClass('active').each(function(i, val) {
+            $(this).find('input[type=radio]').prop('checked', false);
+        });
+        $(event.currentTarget).addClass('active').find('input[type=radio]').prop('checked', true);
+    });
+
+    // Help type picker
+    var helpTypeOptions = $('.help-type-option');
+
+    helpTypeOptions.click(function(event) {
+        helpTypeOptions.not(event.currentTarget).removeClass('active').each(function(i, val) {
             $(this).find('input[type=radio]').prop('checked', false);
         });
         $(event.currentTarget).addClass('active').find('input[type=radio]').prop('checked', true);
@@ -340,7 +236,10 @@ function enablePickers() {
 
     // Lesson type picker
     var lessonTypeOptions = $('.lesson-type-option');
-    var commPreferences = $('#communication-preferences');
+    var lessonTypeTabs = $('.lesson-type-tab');
+    var liveLessonTab = $('#live-lesson-tab');
+    var writtenLessonTab = $('#written-lesson-tab');
+
     lessonTypeOptions.click(function(event) {
         lessonTypeOptions.not(event.currentTarget).removeClass('active').each(function(i, val) {
             $(this).find('input[type=radio]').prop('checked', false);
@@ -348,22 +247,18 @@ function enablePickers() {
 
         $(event.currentTarget).addClass('active').find('input[type=radio]').prop('checked', true);
 
-        if ($(event.currentTarget).prop('id') == 'live-lesson-option') {
-            commPreferences.fadeIn();
-        } else {
-            commPreferences.fadeOut();
-        }
-    });
-}
+        var clickedID =  $(event.currentTarget).prop('id');
+        console.log("event.currentTarget.id: " + clickedID);
 
-function enableHelpTypePicker() {
-    var helpTypeOptions = $('.help-type-option');
-    var helpTypeDetailsViews = $('.help-type-details')
-    helpTypeOptions.click(function(event) {
-        helpTypeOptions.not(event.currentTarget).removeClass('active').each(function(i, val) {
-            $(this).find('input[type=radio]').prop('checked', false);
-        });
-        $(event.currentTarget).addClass('active').find('input[type=radio]').prop('checked', true);
+        if($(event.currentTarget).prop('id') == 'live-lesson-option') {
+            writtenLessonTab.hide();
+            liveLessonTab.fadeIn();
+        } else if ($(event.currentTarget).prop('id') == 'written-lesson-option') {
+            liveLessonTab.hide();
+            writtenLessonTab.fadeIn();
+        } else {
+            console.log('error');
+        }
     });
 }
 

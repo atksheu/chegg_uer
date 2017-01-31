@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Find me a tutor</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/charCount.js"></script>
+    <script src="js/autosize.min.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAuxwIANQSta45TDSSTVArn4fYCS_f7oOM",
+        authDomain: "student-request-d.firebaseapp.com",
+        databaseURL: "https://student-request-d.firebaseio.com",
+        storageBucket: "student-request-d.appspot.com",
+        messagingSenderId: "627668034504"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <!--<script src="js/dropzone.js"></script>-->
+    <script src="shared.js"></script>
+    <script src="page-D.js"></script>
+
+    <link rel="stylesheet/less" type="text/css" href="styles-D.less" />
+    <script src="less.min.js" type="text/javascript"></script>
+</head>
+<body class="student-request-prototype">
+<nav id="site-header">
+    <a id="logo" title="Chegg Tutors" href="/"></a>
+</nav>
+<header id="form-header">
+    <h1>
+        Tell us a little about you and what you’d like help with
+    </h1>
+    <!-- <h2>
+        (This helps us match you with the best tutors for what YOU need)
+    </h2> -->
+    <span id="escape-to-results">
+        Or, 
+        <a href="#" title="See tutors">
+            Don't make me fill this out, <br />
+            just show me the tutors &rsaquo;
+        </a>
+    </span>
+</header>
+<form id="student-help-request-form">
+    <input type="hidden" name="test_group" value="C" />
+    <section id="basic-info">
+        <div class="form-input-group">
+            <label class="form-group-label">Subject</label>
+            <div id="subject" class="input-group">
+                <input type="text" class="small" name="subject" placeholder="e.g. Calculus, Accounting, English" />
+            </div>
+        </div>
+        <div class="form-input-group">
+            <label class="form-group-label">Sub-topic</label>
+            <div id="sub-topic">
+                <input type="text" class="small" name="sub_topic" placeholder="e.g. derivatives" />
+            </div>
+        </div>
+        <div class="form-input-group">
+            <label class="form-group-label">Your grade level</label>
+            <div id="grade-level-picker" class="button-group three">
+                <div class="grade-level-option button-group-option active">
+                    College
+                    <input type="radio" class="invis" name="grade_level" checked=true value="college" />
+                </div>
+                <div class="grade-level-option button-group-option">
+                    High School
+                    <input type="radio" class="invis" name="grade_level" value="high_school" />
+                </div>
+                <div class="grade-level-option button-group-option">
+                    Other
+                    <input type="radio" class="invis" name="grade_level" value="other" />
+                </div>
+            </div>
+        </div>
+        <div class="form-input-group">
+            <label class="form-group-label sentence">
+                <strong>"I'm working on..."</strong> (Select one)
+            </label>
+            <ul id="help-type-options">
+                <li id="homework-type-option" class="help-type-option" data-help-type="homework">
+                    <div class="help-type-icon"></div>
+                    <h3>Homework</h3>
+                    <small>e.g. problem set</small>
+                    <input type="radio" class="invis" name="help_type" value="homework" />
+                </li>
+                <li id="exam-type-option" class="help-type-option" data-help-type="exam">
+                    <div class="help-type-icon"></div>
+                    <h3>Studying for<br />a test</h3>
+                    <input type="radio" class="invis" name="help_type" value="exam" />
+                </li>
+                <li id="paper-type-option" class="help-type-option" data-help-type="paper">
+                    <div class="help-type-icon"></div>
+                    <h3>A paper</h3>
+                    <input type="radio" class="invis" name="help_type" value="paper" />
+                </li>
+                <li id="other-type-option" class="help-type-option" data-help-type="other">
+                    <div class="help-type-icon"></div>
+                    <h3>Other</h3>
+                    <input type="radio" class="invis" name="help_type" value="other" />
+                </li>
+            </ul>
+        </div>
+        <div class="form-input-group">
+            <label class="form-group-label sentence">
+                In <strong>one or two sentences</strong>, describe what you'd like help with
+            </label>
+            <div class="question-input-group">
+                <textarea name="question" class="question-input charlimited"></textarea>
+            </div>
+        </div>
+        <div class="form-input-group">
+            <label class="form-group-label sentence">
+                (Optional) Do you have any materials that would be useful for the tutor to have?
+            </label>
+            <div class="additional-materials-inputs">
+                <button class="button-file button-secondary button-small">
+                    Attach files
+                </button>
+                <input type="file" name="attachments" class="attachments-input invis" multiple />
+                <a class="toggle-textarea" title="Copy/paste text">or copy/paste text</a>
+                <textarea name="materials_text" 
+                    class="invis additional-text"
+                    placeholder="Type or paste text here..."></textarea>
+                <div class="files-list invis"></div>
+                <small>e.g. the assignment, any work you've completed so far</small>
+            </div>
+        </div>
+    </section>
+
+    <section id="preferences" class="fullwidth">
+        <div id="lesson-type-preference" class="form-input-group">
+            <label class="form-group-label sentence large">
+                What <strong>type</strong> of lesson do you prefer?
+            </label>
+            <div id="lesson-type-picker" class="button-group two large">
+                <div id="live-lesson-option" class="lesson-type-option button-group-option active">
+                    Live
+                    <input type="radio" class="invis" name="lesson_type" value="live" checked=true />
+                </div>
+                <div id="written-lesson-option" class="lesson-type-option button-group-option">
+                    Written
+                    <input type="radio" class="invis" name="lesson_type" value="written" />
+                </div>
+            </div>
+        </div>
+        <div id="live-lesson-tab" class="lesson-type-tab">
+            <img id="live-lesson-illustration" 
+                class="lesson-type-illustration" 
+                src="img/live-lesson-illustration.svg" 
+                title="Live lesson" 
+                alt="Illustration showing lesson happening in lesson space with tutor, featuring video chat, a shared whiteboard, and other tools" />
+            <div id="live-lesson-details" class="lesson-type-details">
+                <p class="lesson-type-description">
+                    Your traditional tutoring experience&mdash;<br />just online
+                </p>
+                <div id="communication-preferences" class="form-input-group">
+                    <label class="form-group-label sentence">
+                        How do you prefer to commmunicate?
+                    </label>
+                    <div id="preferred-communication">
+                        <label>
+                            <input type="radio" name="communication_preference" value="text" />
+                            <span>Text</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="communication_preference" value="audio" />
+                            <span>Audio</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="communication_preference" value="video" />
+                            <span>Video</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="communication_preference" value="no preference" checked=true />
+                            <span>No preference</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="written-lesson-tab" class="lesson-type-tab invis">
+            <img id="written-lesson-illustration" 
+                class="lesson-type-illustration" 
+                src="img/written-lesson-illustration.svg" 
+                title="Written lesson" 
+                alt="Illustration showing question asked by student and written response from tutor" />
+            <div id="written-lesson-details" class="lesson-type-details">
+                <p class="lesson-type-description">
+                    Your tutor works <strong>offline</strong> on what you ask for and
+                    returns it by your deadline
+                </p>
+                <span>Great for:</span>
+                <ul class="suggested-uses">
+                    <li>Editing essays</li>
+                    <li>Debugging code</li>
+                    <li>Creating study guides</li>
+                </ul>
+                <a class="view-sample" title="View sample written lesson" href="#">
+                    View sample
+                </a>
+            </div>
+        </div>
+    </section>
+    <section id="account-info">
+        <div class="form-input-group">
+            <label class="form-group-label">Your name</label>
+            <input type="text" name="full_name" class="small" />
+        </div>
+        <div class="form-input-group">
+            <label class="form-group-label">Email</label>
+            <input type="text" name="email" class="small" placeholder="me@example.com" />
+        </div>
+    </section>
+    <footer id="form-actions">
+        <button id="form-submit" class="button-primary button-large">
+            Start matching
+        </button>
+        <small class="feed-forward" style="display: none;">
+            <strong>What happens next?</strong><br />
+            We'll find you up to 3 tutor matches
+        </small>
+    </footer>
+</form>
+<div id="form-errors" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Please fill out all required fields</h4>
+            </div>
+            <div class="modal-body">
+                Please review your responses above and make sure you've completed all the required fields.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="form-success" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Request submitted!</h4>
+            </div>
+            <div class="modal-body">
+                Thanks for completing this form.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
