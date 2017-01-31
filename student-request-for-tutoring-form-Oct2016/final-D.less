@@ -1,0 +1,437 @@
+body {
+    font-weight: 300;
+    padding-bottom: 60px;
+}
+
+h1 {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 400;
+    text-align: center;
+    width: 400px;
+    margin: 48px auto 36px;
+}
+
+h2 {
+    font-size: 14px;
+    line-height: 36px;
+    font-weight: 400;
+    margin-top: 4px;
+    text-align: center;
+    color: #999;
+}
+
+#site-header {
+    .box-sizing(border-box);
+    width: 100%;
+    height: 50px;
+    padding-top: 14px;
+    border-bottom: 2px solid @orange;
+}
+
+#logo {
+    display: block;
+    background: url("img/chegg-tutors-logo@2x.png") no-repeat 0 0;
+    background-size: cover;
+    width: 147px;
+    height: 23px;
+    margin-left: 28px;
+}
+
+#student-help-request-form {
+
+    > section {
+        width: 540px;
+        margin: 0 auto;
+
+        &.last-section {
+        }
+    }
+
+    #preferences {
+        width: 940px;
+    }
+}
+
+#form-header {
+    position: relative;
+    text-align: center;
+}
+
+#progress {
+    position: relative;
+    display: inline-block;
+    .clearfix;
+    margin-top: 30px;
+
+    #progress-bar {
+        position: absolute;
+        left: 72px;
+        top: 10px;
+        background: #e5e5e5;
+        width: 288px;
+        height: 8px;
+        z-index: -1;
+    }
+
+    #current-progress {
+        position: absolute;
+        left: 72px;
+        top: 12px;
+        background: @orange;
+        width: 10px;
+        height: 4px;
+    }
+
+    h3 {
+        font-size: 18px;
+        font-weight: 400;
+        color: #333;
+        text-align: center;
+    }
+
+    .progress-circle {
+        margin: 0 auto;
+        .box-sizing(border-box);
+        .border-radius(14px);
+        background: #e5e5e5;
+        padding: 4px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .progress-circle-inner {
+        .box-sizing(border-box);
+        .border-radius(10px);
+        background: #e5e5e5;
+        width: 20px;
+        height: 20px;
+    }
+
+    .progress-step {
+        float: left;
+        width: 144px; 
+
+        &.active {
+            h3 {
+                font-weight: 700;
+                color: @orange;
+            }
+
+            .progress-circle-inner {
+                background: @orange;
+            }
+        }
+    }
+}
+
+#escape-to-results {
+    text-align: left;
+    position: absolute;
+    right: 30px;
+    top: -24px;
+}
+
+#help-type-options {
+    .clearfix;
+    padding-left: 1px;
+    margin-bottom: 0;
+}
+
+.help-type-option {
+    .box-sizing(border-box);
+    width: 137px;
+    height: 108px;
+    border: 2px solid #e5e5e5;
+    margin-right: -2px;
+    float: left;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+
+    &:first-child {
+        .left-corners-radius(8px);
+    }
+
+    &:last-child {
+        .right-corners-radius(8px);
+        border-right: 2px solid #e5e5e5;
+        width: 136px;
+    }
+
+    .help-type-icon {
+        width: 48px;
+        height: 48px;
+        display: block;
+        margin: 15px auto 0;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+    }
+
+    h3 {
+        margin-top: -2px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        color: #666;
+    }
+
+    small {
+        font-size: 12px;
+        line-height: 12px;
+        margin-top: -3px;
+        display: block;
+        color: #999;
+    }
+
+    &:hover {
+        background: #f5f5f5;
+        z-index: 2;
+    }
+
+    &.active {
+        background: @orange;
+
+        .help-type-icon {
+            opacity: 1;
+        }
+
+        h3 {
+            color: #fff;
+        }
+
+        small {
+            color: #fff;
+        }
+    }
+}
+
+#homework-type-option {
+    .help-type-icon {
+        background-image: url('img/help-type-options-sprite.svg');
+        background-size: 192px;
+        background-position: 0 0;
+    }
+
+    &.active .help-type-icon {
+        background-position: 0 -48px;
+    }
+}
+
+#exam-type-option {
+    .help-type-icon {
+        background-image: url('img/help-type-options-sprite.svg');
+        background-size: 192px;
+        background-position: -48px 0;
+    }
+
+    &.active .help-type-icon {
+        background-position: -48px -48px;
+    }
+}
+
+#paper-type-option {
+    .help-type-icon {
+        background-image: url('img/help-type-options-sprite.svg');
+        background-size: 192px;
+        background-position: -96px 0;
+    }
+
+    &.active .help-type-icon {
+        background-position: -96px -48px;
+    }
+}
+
+#other-type-option {
+    .help-type-icon {
+        background-image: url('img/help-type-options-sprite.svg');
+        background-size: 192px;
+        background-position: -144px 0;
+    }
+
+    &.active .help-type-icon {
+        background-position: -144px -48px;
+    }
+}
+
+#preferences {
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding-top: 12px;
+}
+
+#lesson-type-options {
+    float: left;
+    padding: 0;
+    .clearfix;
+}
+
+#lesson-type-preference {
+    text-align: center;
+
+    .form-group-label {
+        zoom: 1;
+    }
+
+    #lesson-type-picker {
+        width: 300px;
+        margin: 0 auto;
+    }
+}
+
+#preferred-communication {
+    padding-top: 12px;
+    text-align: left;
+    float: left;
+    .clearfix;
+    margin-top: 0;
+
+    label {
+        display: block;
+        font-weight: 400;
+        height: 36px;
+        margin: 0;
+        padding-left: 18px;
+
+        &.active {
+            font-weight: 700;
+        }
+    }
+
+    input[type=radio] {
+        display: inline-block;
+        margin-right: 15px;
+    }
+}
+
+#communication-preferences {
+    margin-top: 0;
+
+    .form-group-label {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+.lesson-type-tab {
+    .box-sizing(border-box);
+    width: 940px;
+    margin: 72px auto 0;
+    padding: 0 60px 30px;
+    .clearfix;
+}
+
+.lesson-type-illustration {
+    display: block;
+    width: 434px;
+    height: 258px;
+    margin-right: 45px;
+    float: left;
+}
+
+.lesson-type-details {
+    float: left;
+    width: 340px;
+}
+
+.lesson-type-description {
+    font-size: 18px;
+    line-height: 24px;
+    color: @orange;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+#form-actions {
+    .clearfix;
+    width: 940px;
+    margin: 0 auto;
+}
+
+.feed-forward {
+    float: right;
+    margin-right: 36px;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: right;
+
+    strong {
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+
+.toggle-textarea {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 8px;
+}
+
+.additional-materials-inputs {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+    .border-radius(8px);
+
+    small {
+        display: block;
+        font-size: 16px;
+        line-height: 18px;
+        color: #bbb;
+        margin-top: 12px;
+    }
+}
+
+.additional-text {
+    margin-top: 12px;
+}
+
+.input-clarification {
+    display: block;
+    font-size: 14px;
+    font-style: italic;
+    color: #666;
+}
+
+#form-submit {
+    float: right;
+}
+
+.student-request-prototype {
+    input[type=text], textarea {
+        width: 100%;
+    }
+
+    .counter {
+        display: block;
+        color: #999;
+        text-align: right;
+        margin-bottom: -20px;
+        margin-top: -4px;
+    }
+
+    .additional-materials-inputs {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .popover {
+        min-width: 300px;
+        max-width: 300px;
+        font-family: Aspira;
+
+        ul {
+            padding-left: 16px;
+            margin-bottom: 0;
+        }
+
+        .popover-content {
+            padding: 16px;
+        }
+    }
+}
