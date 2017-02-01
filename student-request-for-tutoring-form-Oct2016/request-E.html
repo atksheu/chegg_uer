@@ -21,20 +21,22 @@
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyAuxwIANQSta45TDSSTVArn4fYCS_f7oOM",
-        authDomain: "student-request-d.firebaseapp.com",
-        databaseURL: "https://student-request-d.firebaseio.com",
-        storageBucket: "student-request-d.appspot.com",
-        messagingSenderId: "627668034504"
+        apiKey: "AIzaSyB7hpBC6Zyx_PNNYpYQw5ESmtmnoJpiLbc",
+        authDomain: "student-request-e.firebaseapp.com",
+        databaseURL: "https://student-request-e.firebaseio.com",
+        storageBucket: "student-request-e.appspot.com",
+        messagingSenderId: "114789415321"
       };
       firebase.initializeApp(config);
     </script>
 
     <!--<script src="js/dropzone.js"></script>-->
     <script src="shared.js"></script>
-    <script src="page-D.js"></script>
+    <script src="page-E.js"></script>
 
-    <link rel="stylesheet/less" type="text/css" href="styles-D.less" />
+    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-slider.min.css" />
+    <link rel="stylesheet/less" type="text/css" href="styles-E.less" />
     <script src="less.min.js" type="text/javascript"></script>
 </head>
 <body class="student-request-prototype">
@@ -87,6 +89,59 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-row side-by-side">
+            <div class="form-input-group">
+                <label class="form-group-label sentence">
+                    How <strong>soon</strong> do you want to meet?
+                </label>
+                <div id="urgency" class="stacked-radio-options">
+                    <label>
+                        <input type="radio" name="urgency" value="next_15_minutes" checked=true />
+                        <span>Next 15 minutes</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="urgency" value="next_60_minutes" />
+                        <span>Next 60 minutes</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="urgency" value="custom" />
+                        <span>Specify: </span>
+                        <input id="custom_date" type="text" class="mini" 
+                            name="custom_date" 
+                            placeholder="Today, 11:15pm" />
+                    </label>
+                    <label>
+                        <input type="radio" name="urgency" value="flexible" />
+                        <span>I'm flexible</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-input-group">
+                <label class="form-group-label sentence">
+                    How <strong>often</strong> do you want to meet?
+                </label>
+                <div id="frequency" class="stacked-radio-options">
+                    <label>
+                        <input type="radio" name="frequency" value="once" checked=true />
+                        <span>Just once</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="frequency" value="few_times" />
+                        <span>A few times</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="frequency" value="regularly" />
+                        <span>Regular schedule</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="frequency" value="not_sure" />
+                        <span>I'm not sure</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <div class="form-input-group">
             <label class="form-group-label sentence">
                 <strong>"I'm working on..."</strong> (Select one)
@@ -140,6 +195,47 @@
                 <small>e.g. the assignment, any work you've completed so far</small>
             </div>
         </div>
+        <div class="form-input-group">
+            <label class="form-group-label sentence">
+                (Optional) What best describes how confident you are about what you’re working on?
+            </label>
+            <div class="confidence-scale-input">
+                <i class="tick-mark zero"></i>
+                <i class="tick-mark one"></i>
+                <i class="tick-mark two"></i>
+                <i class="tick-mark three"></i>
+                <i class="tick-mark four"></i>
+                <i class="tick-mark five"></i>
+                <i class="tick-mark six"></i>
+                <i class="tick-mark seven"></i>
+                <i class="tick-mark eight"></i>
+                <i class="tick-mark nine"></i>
+                <i class="tick-mark ten"></i>
+                <input id="confidence-scale" 
+                    data-slider-id='confidenceScaleSlider' 
+                    type="text" 
+                    data-slider-min="0" 
+                    data-slider-max="10" 
+                    data-slider-step="1" 
+                    data-slider-value="0" />
+                <span class="tick-desc one">
+                    I'm lost
+                </span>
+                <span class="tick-desc three">
+                    I was able to get started, <br />
+                    but now I'm stuck
+                </span>
+                <span class="tick-desc six">
+                    I'm just confused<br />
+                    on one part
+                </span>
+                <span class="tick-desc ten">
+                    I think I got it, but I<br />
+                    want to check/deepen<br />
+                    my understanding
+                </span>
+            </div>
+        </div>
     </section>
 
     <section id="preferences" class="fullwidth">
@@ -172,7 +268,7 @@
                     <label class="form-group-label sentence">
                         How do you prefer to commmunicate?
                     </label>
-                    <div id="preferred-communication">
+                    <div id="preferred-communication" class="stacked-radio-options">
                         <label>
                             <input type="radio" name="communication_preference" value="text" />
                             <span>Text</span>
@@ -273,4 +369,6 @@
     </div>
 </div>
 </body>
+<script src="js/jquery.datetimepicker.full.min.js"></script>
+<script src="js/bootstrap-slider.min.js"></script>
 </html>

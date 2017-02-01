@@ -1,6 +1,7 @@
 var submitBtn, requestForm, fileRefsArray, fileDLArray, testGroupInput,
     subjectInput, subtopicInput, gradeLevelOptions, helpTypeOptions, 
     questionInput, attachmentsInput, additionaltextInput, lessonTypeOptions, commPreferenceOptions,
+    urgencyInput, customDateInput, frequencyInput, confidenceInput,
     nameInput, emailInput;
 var storage = firebase.storage();
 var storageRef = firebase.storage().ref();
@@ -21,6 +22,11 @@ $(function() {
     attachmentsInput = $('input[name=attachments]');
     additionaltextInput = $('textarea[name=materials_text]');
 
+    urgencyInputs = $('input[name=urgency]');
+    customDateInput = $('input[name=custom_date]');
+    frequencyInputs = $('input[name=frequency]');
+    confidenceInput = $('#confidence-scale');
+
     lessonTypeInputs = $('input[name=lesson_type]');
     commPreferenceInputs = $('input[name=communication_preference]');
 
@@ -32,7 +38,6 @@ $(function() {
     enableDynamicTextFields();
     enableCharLimitedTextareas();
     enableTextareaToggles();
-    enablePopovers();
 
     firebase.auth().signInAnonymously().catch(function(error) {
       // Handle Errors here.
@@ -65,11 +70,6 @@ $(function() {
     // Saves message on form submit.
     requestForm.on('submit', function(e) {
         e.preventDefault();
-
-//     subjectInput, subtopicInput, gradeLevelOptions, helpTypeOptions, 
-//     questionInput, attachmentsInput, additionaltextInput, lessonTypeOptions, commPreferenceOptions,
-//     nameInput, emailInput;
-
 
         var test_group = testGroupInput.val();
 
@@ -118,6 +118,19 @@ $(function() {
         } else {
             communication_preference = '';              // Make sure that comm preference is set to empty if not live
         }
+
+        // New Request-E inputs
+        var urgency = urgencyInputs.filter(':checked').val();
+        var custom_date = '';
+
+        if (urgency == "custom") {
+            custom_date = customDateInput.val();
+        } else {
+            custom_date = '';
+        }
+
+        var frequency = frequencyInputs.filter(':checked').val();
+        var confidence = confidenceInput.val();
         
         var requestArray = {
             test_group: test_group,
@@ -131,7 +144,11 @@ $(function() {
             additional_text: additional_text,
             question: question,
             lesson_type: lesson_type,
-            communication_preference: communication_preference
+            communication_preference: communication_preference,
+            urgency: urgency,
+            custom_date: custom_date,
+            frequency: frequency,
+            confidence: confidence
         }
 
         console.log(requestArray);
@@ -181,7 +198,11 @@ function writeNewRequest(uid, requestData) {
     additional_text: requestData['additional_text'],
     question: requestData['question'],
     lesson_type: requestData['lesson_type'],
-    communication_preference: requestData['communication_preference']
+    communication_preference: requestData['communication_preference'],
+    urgency: requestData['urgency'],
+    custom_date: requestData['custom_date'],
+    frequency: requestData['frequency'],
+    confidence: requestData['confidence'],
   };
 
   console.log('finalRequestData: ');
@@ -258,6 +279,29 @@ function enablePickers() {
             writtenLessonTab.fadeIn();
         } else {
             console.log('error');
+        }
+    });
+
+    // Custom date / time picker
+    $('#custom_date').datetimepicker({
+        format: 'M j, Y g:i a',
+        formatTime: 'g:i a',
+        scrollMonth: false,
+        scrollTime: false,
+        scrollInput: false,
+        allowBlank: true,
+        validateOnBlue: false,
+        step: 30,
+    });
+
+    $('#custom_date').on('click', function(event) {
+        $(event.currentTarget).parent().find('input[type=radio]').prop('checked', true);
+    });
+
+    // Enable confidence scale
+    $('.confidence-scale-input input').slider({
+        formatter: function(value) {
+            return 'Current value: ' + value;
         }
     });
 }
@@ -353,8 +397,4 @@ function enableCharLimitedTextareas() {
         counterText: 'Characters left: ',
         css: 'counter'
     });
-}
-
-function enablePopovers() {
-    $('.lesson-type-option').popover();
 }
