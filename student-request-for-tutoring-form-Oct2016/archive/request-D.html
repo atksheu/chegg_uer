@@ -21,11 +21,11 @@
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyB7hpBC6Zyx_PNNYpYQw5ESmtmnoJpiLbc",
-        authDomain: "student-request-e.firebaseapp.com",
-        databaseURL: "https://student-request-e.firebaseio.com",
-        storageBucket: "student-request-e.appspot.com",
-        messagingSenderId: "114789415321"
+        apiKey: "AIzaSyAuxwIANQSta45TDSSTVArn4fYCS_f7oOM",
+        authDomain: "student-request-d.firebaseapp.com",
+        databaseURL: "https://student-request-d.firebaseio.com",
+        storageBucket: "student-request-d.appspot.com",
+        messagingSenderId: "627668034504"
       };
       firebase.initializeApp(config);
     </script>
@@ -34,8 +34,6 @@
     <script src="shared.js"></script>
     <script src="page-D.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css" />
-    <link rel="stylesheet" type="text/css" href="bootstrap-slider.min.css" />
     <link rel="stylesheet/less" type="text/css" href="styles-D.less" />
     <script src="less.min.js" type="text/javascript"></script>
 </head>
@@ -58,7 +56,7 @@
     </span>
 </header>
 <form id="student-help-request-form">
-    <input type="hidden" name="test_group" value="D" />
+    <input type="hidden" name="test_group" value="C" />
     <section id="basic-info">
         <div class="form-input-group">
             <label class="form-group-label">Subject</label>
@@ -89,11 +87,8 @@
                 </div>
             </div>
         </div>
-
-        <hr class="dashed" />
-
-        <div class="form-input-group sentence">
-            <label class="form-group-label">
+        <div class="form-input-group">
+            <label class="form-group-label sentence">
                 <strong>"I'm working on..."</strong> (Select one)
             </label>
             <ul id="help-type-options">
@@ -120,41 +115,39 @@
                 </li>
             </ul>
         </div>
-        <div class="form-input-group sentence" id="question">
-            <label class="form-group-label">
+        <div class="form-input-group">
+            <label class="form-group-label sentence">
                 In <strong>one or two sentences</strong>, describe what you'd like help with
             </label>
             <div class="question-input-group">
                 <textarea name="question" class="question-input charlimited"></textarea>
             </div>
         </div>
-        <div class="form-input-group sentence" id="materials">
-            <div class="side-by-side clearfix">
-                <div id="add-materials-controls">
-                    <button id="attach-files" class="button-file button-small button-secondary">
-                        Attach files
-                    </button>
-                    <a class="toggle-textarea" title="Copy/paste text">or type/paste text</a>
-                </div>
-                <label class="form-group-label">
-                    Do you have <strong>any relevant materials</strong> for the tutor? (Optional)
-                </label>
-                <small class="examples">e.g. the assignment, any work you've completed so far</small>
+        <div class="form-input-group">
+            <label class="form-group-label sentence">
+                Do you have any relevant materials for the tutor? (Optional)
+            </label>
+            <div class="additional-materials-inputs">
+                <button class="button-file button-secondary button-small">
+                    Attach files
+                </button>
+                <input type="file" name="attachments" class="attachments-input invis" multiple />
+                <a class="toggle-textarea" title="Copy/paste text">or copy/paste text</a>
+                <textarea name="materials_text" 
+                    class="invis additional-text"
+                    placeholder="Type or paste text here..."></textarea>
+                <div class="files-list invis"></div>
+                <small>e.g. the assignment, any work you've completed so far</small>
             </div>
-            <input type="file" name="attachments" class="attachments-input invis" multiple />
-            <div class="files-list invis"></div>
-            <textarea name="materials_text" 
-                class="invis additional-text"
-                placeholder="Type or paste text here..."></textarea>
         </div>
     </section>
 
     <section id="preferences" class="fullwidth">
-        <div id="lesson-type-preference" class="form-input-group sentence">
-            <label class="form-group-label">
+        <div id="lesson-type-preference" class="form-input-group">
+            <label class="form-group-label sentence large">
                 What <strong>type</strong> of lesson do you prefer?
             </label>
-            <div id="lesson-type-picker" class="button-group two fullwidth">
+            <div id="lesson-type-picker" class="button-group two large">
                 <div id="live-lesson-option" class="lesson-type-option button-group-option active">
                     Live
                     <input type="radio" class="invis" name="lesson_type" value="live" checked=true />
@@ -168,19 +161,18 @@
         <div id="live-lesson-tab" class="lesson-type-tab">
             <img id="live-lesson-illustration" 
                 class="lesson-type-illustration" 
-                src="img/live-lesson-illustration@2x.png" 
+                src="img/live-lesson-illustration.svg" 
                 title="Live lesson" 
                 alt="Illustration showing lesson happening in lesson space with tutor, featuring video chat, a shared whiteboard, and other tools" />
             <div id="live-lesson-details" class="lesson-type-details">
                 <p class="lesson-type-description">
                     Your traditional tutoring experience&mdash;<br />just online
-                    <strong class="recommended">(Recommended)</strong>
                 </p>
-                <div id="communication-preferences" class="form-input-group sentence">
-                    <label class="form-group-label">
+                <div id="communication-preferences" class="form-input-group">
+                    <label class="form-group-label sentence">
                         How do you prefer to commmunicate?
                     </label>
-                    <div id="preferred-communication" class="stacked-radio-options">
+                    <div id="preferred-communication">
                         <label>
                             <input type="radio" name="communication_preference" value="text" />
                             <span>Text</span>
@@ -204,7 +196,7 @@
         <div id="written-lesson-tab" class="lesson-type-tab invis">
             <img id="written-lesson-illustration" 
                 class="lesson-type-illustration" 
-                src="img/written-lesson-illustration@2x.png" 
+                src="img/written-lesson-illustration.svg" 
                 title="Written lesson" 
                 alt="Illustration showing question asked by student and written response from tutor" />
             <div id="written-lesson-details" class="lesson-type-details">
@@ -212,13 +204,13 @@
                     Your tutor works <strong>offline</strong> on what you ask for and
                     returns it by your deadline
                 </p>
-                <span class="great-for">Great for:</span>
+                <span>Great for:</span>
                 <ul class="suggested-uses">
-                    <li>&bull; &nbsp;Editing essays</li>
-                    <li>&bull; &nbsp;Debugging code</li>
-                    <li>&bull; &nbsp;Creating study guides</li>
+                    <li>Editing essays</li>
+                    <li>Debugging code</li>
+                    <li>Creating study guides</li>
                 </ul>
-                <a class="view-sample" title="View sample written lesson" href="#">
+                <a class="view-sample invis" title="View sample written lesson" href="#">
                     View sample
                 </a>
             </div>
@@ -254,7 +246,7 @@
                 <h4 class="modal-title" id="myModalLabel">Please fill out all required fields</h4>
             </div>
             <div class="modal-body">
-                Review your responses above.
+                Please review your responses above and make sure you've completed all the required fields.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
@@ -281,5 +273,4 @@
     </div>
 </div>
 </body>
-<script src="js/jquery.datetimepicker.full.min.js"></script>
 </html>

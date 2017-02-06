@@ -22,10 +22,10 @@ $(function() {
     attachmentsInput = $('input[name=attachments]');
     additionaltextInput = $('textarea[name=materials_text]');
 
-    urgencyInputs = $('input[name=urgency]');
+    urgencyInputs = $('select[name=urgency]');
     customDateInput = $('input[name=custom_date]');
-    frequencyInputs = $('input[name=frequency]');
-    confidenceInput = $('#confidence-scale');
+    frequencyInputs = $('select[name=frequency]');
+    confidenceInput = $('input[name=confidence_level]');
 
     lessonTypeInputs = $('input[name=lesson_type]');
     commPreferenceInputs = $('input[name=communication_preference]');
@@ -114,13 +114,13 @@ $(function() {
         var communication_preference;
 
         if (lesson_type == 'live') {
-            communication_preference = commPreferenceInputs.filter(':checked').val();    
+            communication_preference = commPreferenceInputs.filter(':checked').val();
         } else {
             communication_preference = '';              // Make sure that comm preference is set to empty if not live
         }
 
         // New Request-E inputs
-        var urgency = urgencyInputs.filter(':checked').val();
+        var urgency = urgencyInputs.val();
         var custom_date = '';
 
         if (urgency == "custom") {
@@ -129,8 +129,8 @@ $(function() {
             custom_date = '';
         }
 
-        var frequency = frequencyInputs.filter(':checked').val();
-        var confidence = confidenceInput.val();
+        var frequency = frequencyInputs.val();
+        var confidence = confidenceInput.filter(':checked').val();
         
         var requestArray = {
             test_group: test_group,
@@ -298,21 +298,37 @@ function enablePickers() {
         $(event.currentTarget).parent().find('input[type=radio]').prop('checked', true);
     });
 
-    // Enable confidence scale
-    $('.confidence-scale-input input').slider({
-        formatter: function(value) {
-            return 'Current value: ' + value;
+    // Enable "custom date" option in Urgency picker
+    $('#urgency').change(function() {
+        if($(this).val() == 'custom') {
+            customDateInput.fadeIn().focus().trigger('click');
+        } else {
+            customDateInput.hide();
         }
+    });
+
+    // Enable confidence scale
+    var confidenceLevelOptions = $('.confidence-scale-option');
+
+    confidenceLevelOptions.click(function(event) {
+        confidenceLevelOptions.not(event.currentTarget).removeClass('active').each(function(i, val) {
+            $(this).find('input[type=radio]').prop('checked', false);
+        });
+
+        $(event.currentTarget).addClass('active').find('input[type=radio]').prop('checked', true);
     });
 }
 
 function enableFileDialogs() {
-    var attachFileButtons = $('.button-file').on('click', function(event) {
+    var attachFileButton = $('.button-file');
+
+    attachFileButton.on('click', function(event) {
         var files, file, fileRef, fileDLurl;
         var fileList = '';
-        var fileInput = $(event.currentTarget).parent().find('input[type=file]');
-        var filesListEl = $(event.currentTarget).parent().find('.files-list');
+        var fileInput = $(event.currentTarget).parent().parent().find('input[type=file]');
+        var filesListEl = $(event.currentTarget).parent().parent().find('.files-list');
 
+        console.log("fileInput: " + fileInput);
         fileInput.trigger('click');
         fileInput.on('change', function(e){
             files = fileInput.get(0).files;
@@ -369,7 +385,7 @@ function enableFileDialogs() {
                 fileRefsArray.push(fileRef);
             }
 
-            filesListEl.show().html(fileList);
+            filesListEl.fadeIn().html(fileList);
         });
 
         return false;
@@ -379,7 +395,7 @@ function enableFileDialogs() {
 function enableTextareaToggles() {
     var textareaToggles = $('.toggle-textarea').on('click', function(event) {
         console.log('hi');
-        $(event.currentTarget).parent().find('textarea').show();
+        $(event.currentTarget).parent().parent().find('textarea').fadeIn().focus();
         return false;
     });
 }

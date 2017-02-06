@@ -7,7 +7,19 @@ label {
 
 .form-input-group {
     .clearfix;
-    margin: 22px 0;
+    margin: 26px 0;
+
+    &.sentence {
+        margin: 40px 0;
+
+        .form-group-label {
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 200;
+            text-transform: none;
+            margin-bottom: 10px;
+        }
+    }
 }
 
 .input-group {
@@ -21,17 +33,8 @@ label {
     color: #666;
     text-transform: uppercase;
 
-    &.sentence {
-        margin-top: 26px;
-        font-size: 14px;
-        line-height: 18px;
-        font-weight: 400;
-        text-transform: none;
-        margin-bottom: 10px;
-
-        strong {
-            font-weight: 700;
-        }
+    strong {
+        font-weight: 500;
     }
 
     &.large {
@@ -42,4 +45,21 @@ label {
 
 input[type=file].invis {
     display: none;
+}
+
+.form-row {
+    .clearfix;
+
+    &.side-by-side {
+        > .form-input-group {
+            .box-sizing(border-box);
+            float: left;
+            width: 256px;
+            margin-right: 28px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
 }
