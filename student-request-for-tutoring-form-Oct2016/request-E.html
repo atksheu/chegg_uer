@@ -58,7 +58,7 @@
     </span>
 </header>
 <form id="student-help-request-form">
-    <input type="hidden" name="test_group" value="C" />
+    <input type="hidden" name="test_group" value="E" />
     <section id="basic-info">
         <div class="form-input-group">
             <label class="form-group-label">Subject</label>
@@ -90,61 +90,9 @@
             </div>
         </div>
 
-        <div class="form-row side-by-side">
-            <div class="form-input-group">
-                <label class="form-group-label sentence">
-                    How <strong>soon</strong> do you want to meet?
-                </label>
-                <div id="urgency" class="stacked-radio-options">
-                    <label>
-                        <input type="radio" name="urgency" value="next_15_minutes" checked=true />
-                        <span>Next 15 minutes</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="urgency" value="next_60_minutes" />
-                        <span>Next 60 minutes</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="urgency" value="custom" />
-                        <span>Specify: </span>
-                        <input id="custom_date" type="text" class="mini" 
-                            name="custom_date" 
-                            placeholder="Today, 11:15pm" />
-                    </label>
-                    <label>
-                        <input type="radio" name="urgency" value="flexible" />
-                        <span>I'm flexible</span>
-                    </label>
-                </div>
-            </div>
-            <div class="form-input-group">
-                <label class="form-group-label sentence">
-                    How <strong>often</strong> do you want to meet?
-                </label>
-                <div id="frequency" class="stacked-radio-options">
-                    <label>
-                        <input type="radio" name="frequency" value="once" checked=true />
-                        <span>Just once</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="frequency" value="few_times" />
-                        <span>A few times</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="frequency" value="regularly" />
-                        <span>Regular schedule</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="frequency" value="not_sure" />
-                        <span>I'm not sure</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-input-group">
-            <label class="form-group-label sentence">
-                <strong>"I'm working on..."</strong> (Select one)
+        <div class="form-input-group sentence">
+            <label class="form-group-label">
+                <strong>"I'm working on..."</strong>
             </label>
             <ul id="help-type-options">
                 <li id="homework-type-option" class="help-type-option" data-help-type="homework">
@@ -170,80 +118,101 @@
                 </li>
             </ul>
         </div>
-        <div class="form-input-group">
-            <label class="form-group-label sentence">
+        <div class="form-input-group sentence">
+            <label class="form-group-label">
                 In <strong>one or two sentences</strong>, describe what you'd like help with
             </label>
             <div class="question-input-group">
                 <textarea name="question" class="question-input charlimited"></textarea>
             </div>
         </div>
-        <div class="form-input-group">
-            <label class="form-group-label sentence">
-                Do you have any materials that would be useful for the tutor to have? (Optional)
+        <div class="form-input-group sentence">
+            <label class="form-group-label">
+                Do you have <strong>any relevant materials</strong> for the tutor? (Optional)
             </label>
             <div class="additional-materials-inputs">
-                <button class="button-file button-secondary button-small">
-                    Attach files
-                </button>
+                <div id="add-materials-controls">
+                    <a id="attach-files" class="button-file">
+                        Attach files
+                    </a>
+                    <a class="toggle-textarea" title="Copy/paste text">Type/paste text</a>
+                </div>
                 <input type="file" name="attachments" class="attachments-input invis" multiple />
-                <a class="toggle-textarea" title="Copy/paste text">or copy/paste text</a>
+                <small class="examples">e.g. the assignment, any work you've completed so far</small>
+                <div class="files-list invis"></div>
                 <textarea name="materials_text" 
                     class="invis additional-text"
                     placeholder="Type or paste text here..."></textarea>
-                <div class="files-list invis"></div>
-                <small>e.g. the assignment, any work you've completed so far</small>
             </div>
         </div>
-        <div class="form-input-group">
-            <label class="form-group-label sentence">
-                What best describes how confident you are about what you’re working on? (Optional)
+        <div class="form-input-group sentence">
+            <label class="form-group-label">
+                How <strong>confident</strong> are you feeling about what you’re working on? (Optional)
             </label>
+            <input type="radio" name="confidence_level" value="na" checked=true class="invis" />
             <div class="confidence-scale-input">
-                <i class="tick-mark zero"></i>
-                <i class="tick-mark one"></i>
-                <i class="tick-mark two"></i>
-                <i class="tick-mark three"></i>
-                <i class="tick-mark four"></i>
-                <i class="tick-mark five"></i>
-                <i class="tick-mark six"></i>
-                <i class="tick-mark seven"></i>
-                <i class="tick-mark eight"></i>
-                <i class="tick-mark nine"></i>
-                <i class="tick-mark ten"></i>
-                <input id="confidence-scale" 
-                    data-slider-id='confidenceScaleSlider' 
-                    type="text" 
-                    data-slider-min="0" 
-                    data-slider-max="10" 
-                    data-slider-step="1" 
-                    data-slider-value="0" />
-                <span class="tick-desc one">
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="1" />
+                    <span>1</span>
+                </label>
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="2" />
+                    <span>2</span>
+                </label>
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="3" />
+                    <span>3</span>
+                </label>
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="4" />
+                    <span>4</span>
+                </label>
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="5" />
+                    <span>5</span>
+                </label>
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="6" />
+                    <span>6</span>
+                </label>
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="7" />
+                    <span>7</span>
+                </label>
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="8" />
+                    <span>8</span>
+                </label>
+                <label class="confidence-scale-option">
+                    <input type="radio" name="confidence_level" value="9" />
+                    <span>9</span>
+                </label>
+                <label class="confidence-scale-option last">
+                    <input type="radio" name="confidence_level" value="10" />
+                    <span>10</span>
+                </label>
+                <small class="tick-desc one">
                     I'm lost
-                </span>
-                <span class="tick-desc three">
-                    I was able to get started, <br />
-                    but now I'm stuck
-                </span>
-                <span class="tick-desc six">
-                    I'm just confused<br />
-                    on one part
-                </span>
-                <span class="tick-desc ten">
-                    I think I got it, but I<br />
-                    want to check/deepen<br />
-                    my understanding
-                </span>
+                </small>
+                <small class="tick-desc three">
+                    I was able to get started,<br />but now I’m stuck
+                </small>
+                <small class="tick-desc seven">
+                    I’m just confused<br />on one part
+                </small>
+                <small class="tick-desc ten">
+                    I think I got it, but I want to<br />check or deepen my<br />understanding
+                </small>
             </div>
         </div>
     </section>
 
     <section id="preferences" class="fullwidth">
-        <div id="lesson-type-preference" class="form-input-group">
-            <label class="form-group-label sentence large">
+        <div id="lesson-type-preference" class="form-input-group sentence">
+            <label class="form-group-label">
                 What <strong>type</strong> of lesson do you prefer?
             </label>
-            <div id="lesson-type-picker" class="button-group two large">
+            <div id="lesson-type-picker" class="button-group two fullwidth">
                 <div id="live-lesson-option" class="lesson-type-option button-group-option active">
                     Live
                     <input type="radio" class="invis" name="lesson_type" value="live" checked=true />
@@ -257,15 +226,16 @@
         <div id="live-lesson-tab" class="lesson-type-tab">
             <img id="live-lesson-illustration" 
                 class="lesson-type-illustration" 
-                src="img/live-lesson-illustration.svg" 
+                src="img/live-lesson-illustration@2x.png" 
                 title="Live lesson" 
                 alt="Illustration showing lesson happening in lesson space with tutor, featuring video chat, a shared whiteboard, and other tools" />
             <div id="live-lesson-details" class="lesson-type-details">
                 <p class="lesson-type-description">
                     Your traditional tutoring experience&mdash;<br />just online
+                    <strong class="recommended">(Recommended)</strong>
                 </p>
-                <div id="communication-preferences" class="form-input-group">
-                    <label class="form-group-label sentence">
+                <div id="communication-preferences" class="form-input-group sentence">
+                    <label class="form-group-label">
                         How do you prefer to commmunicate?
                     </label>
                     <div id="preferred-communication" class="stacked-radio-options">
@@ -292,7 +262,7 @@
         <div id="written-lesson-tab" class="lesson-type-tab invis">
             <img id="written-lesson-illustration" 
                 class="lesson-type-illustration" 
-                src="img/written-lesson-illustration.svg" 
+                src="img/written-lesson-illustration@2x.png" 
                 title="Written lesson" 
                 alt="Illustration showing question asked by student and written response from tutor" />
             <div id="written-lesson-details" class="lesson-type-details">
@@ -300,15 +270,44 @@
                     Your tutor works <strong>offline</strong> on what you ask for and
                     returns it by your deadline
                 </p>
-                <span>Great for:</span>
+                <span class="great-for">Great for:</span>
                 <ul class="suggested-uses">
-                    <li>Editing essays</li>
-                    <li>Debugging code</li>
-                    <li>Creating study guides</li>
+                    <li>&bull; &nbsp;Editing essays</li>
+                    <li>&bull; &nbsp;Debugging code</li>
+                    <li>&bull; &nbsp;Creating study guides</li>
                 </ul>
-                <a class="view-sample invis" title="View sample written lesson" href="#">
+                <a class="view-sample" title="View sample written lesson" href="#">
                     View sample
                 </a>
+            </div>
+        </div>
+    </section>
+    <section id="scheduling">
+        <div class="form-row side-by-side">
+            <div class="form-input-group sentence">
+                <label class="form-group-label">
+                    How <strong>soon</strong> do you want to meet?
+                </label>
+                <select id="urgency" name="urgency">
+                    <option value="next_15_minutes">Next 15 minutes</option>
+                    <option value="next_15_minutes">Next 60 minutes</option>
+                    <option value="custom">Specify a date/time</option>
+                    <option value="flexible">I'm flexible</option>
+                </select>
+                <input id="custom_date" type="text" class="invis small" 
+                    name="custom_date" 
+                    placeholder="Today, 11:15pm" />
+            </div>
+            <div class="form-input-group sentence">
+                <label class="form-group-label">
+                    How <strong>many times</strong>?
+                </label>
+                <select id="frequency" name="frequency">
+                    <option value="once">Just once</option>
+                    <option value="few_times">A few times</option>
+                    <option value="regularly">Regular schedule</option>
+                    <option value="not_sure">I'm not sure</option>
+                </select>
             </div>
         </div>
     </section>
@@ -342,7 +341,7 @@
                 <h4 class="modal-title" id="myModalLabel">Please fill out all required fields</h4>
             </div>
             <div class="modal-body">
-                Please review your responses above and make sure you've completed all the required fields.
+                Review your responses above.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
@@ -370,5 +369,4 @@
 </div>
 </body>
 <script src="js/jquery.datetimepicker.full.min.js"></script>
-<script src="js/bootstrap-slider.min.js"></script>
 </html>

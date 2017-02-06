@@ -32,6 +32,7 @@ $(function() {
     enableDynamicTextFields();
     enableCharLimitedTextareas();
     enableTextareaToggles();
+    enablePopovers();
 
     firebase.auth().signInAnonymously().catch(function(error) {
       // Handle Errors here.
@@ -64,6 +65,11 @@ $(function() {
     // Saves message on form submit.
     requestForm.on('submit', function(e) {
         e.preventDefault();
+
+//     subjectInput, subtopicInput, gradeLevelOptions, helpTypeOptions, 
+//     questionInput, attachmentsInput, additionaltextInput, lessonTypeOptions, commPreferenceOptions,
+//     nameInput, emailInput;
+
 
         var test_group = testGroupInput.val();
 
@@ -108,7 +114,7 @@ $(function() {
         var communication_preference;
 
         if (lesson_type == 'live') {
-            communication_preference = commPreferenceInputs.filter(':checked').val();
+            communication_preference = commPreferenceInputs.filter(':checked').val();    
         } else {
             communication_preference = '';              // Make sure that comm preference is set to empty if not live
         }
@@ -257,15 +263,12 @@ function enablePickers() {
 }
 
 function enableFileDialogs() {
-    var attachFileButton = $('.button-file');
-
-    attachFileButton.on('click', function(event) {
+    var attachFileButtons = $('.button-file').on('click', function(event) {
         var files, file, fileRef, fileDLurl;
         var fileList = '';
-        var fileInput = $(event.currentTarget).parent().parent().parent().find('input[type=file]');
-        var filesListEl = $(event.currentTarget).parent().parent().parent().find('.files-list');
+        var fileInput = $(event.currentTarget).parent().find('input[type=file]');
+        var filesListEl = $(event.currentTarget).parent().find('.files-list');
 
-        console.log("fileInput: " + fileInput);
         fileInput.trigger('click');
         fileInput.on('change', function(e){
             files = fileInput.get(0).files;
@@ -322,7 +325,7 @@ function enableFileDialogs() {
                 fileRefsArray.push(fileRef);
             }
 
-            filesListEl.fadeIn().html(fileList);
+            filesListEl.show().html(fileList);
         });
 
         return false;
@@ -332,7 +335,7 @@ function enableFileDialogs() {
 function enableTextareaToggles() {
     var textareaToggles = $('.toggle-textarea').on('click', function(event) {
         console.log('hi');
-        $(event.currentTarget).parent().parent().parent().find('textarea').fadeIn().focus();
+        $(event.currentTarget).parent().find('textarea').show();
         return false;
     });
 }
@@ -350,4 +353,8 @@ function enableCharLimitedTextareas() {
         counterText: 'Characters left: ',
         css: 'counter'
     });
+}
+
+function enablePopovers() {
+    $('.lesson-type-option').popover();
 }
